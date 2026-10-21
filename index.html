@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="bn"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Madrasatul Madinah | মাদরাসাতুল মাদিনাহ</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@600&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0E8;--cd:#FFFDF9;--ink:#2A1A14;--mu:#7A6A60;--pr:#8E2F2F;--ac:#C9A15B;--ok:#2F7D4F;--bd:#B3372E;--ln:#E6DACB;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#120D0C;--cd:#1D1514;--ink:#F0E6D8;--mu:#B3A394;--pr:#B34A42;--ln:#33261F;--ok:#5DBB86;--bd:#F08A7E}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#120D0C;--cd:#1D1514;--ink:#F0E6D8;--mu:#B3A394;--pr:#B34A42;--ln:#33261F;--ok:#5DBB86;--bd:#F08A7E}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 'Hind Siliguri',system-ui,sans-serif}
+#app{max-width:480px;margin:0 auto;padding-bottom:92px}
+.hd{background:linear-gradient(#0A0605,#1B100D);border-bottom:2px solid var(--ac);padding:18px 16px 14px;display:flex;gap:14px;align-items:center}
+.lg{width:70px;height:70px;border-radius:50%;flex:none;box-shadow:0 0 0 2px var(--ac)}
+.ar{font:700 31px/1.3 Amiri,serif;color:#EBDDC3}
+.en{font:600 20px/1.2 'Cormorant Garamond',Georgia,serif;color:var(--ac);letter-spacing:.05em}
+.bn{font-size:14px;color:#CDBFAE}
+.seg{display:flex;gap:6px;margin:14px 16px 0}
+.seg button{flex:1;padding:9px 4px;border:1px solid var(--ln);background:var(--cd);color:var(--ink);border-radius:10px;font:inherit;cursor:pointer}
+.seg .on{background:var(--pr);border-color:var(--pr);color:#fff;font-weight:700}
+.sec{padding:14px 16px}
+h3{margin:18px 0 8px;font-size:17px}
+.c{background:var(--cd);border:1px solid var(--ln);border-radius:14px;padding:13px 14px;margin-bottom:10px}
+.r{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g2 .c{margin:0}.st{color:var(--mu);font-size:14px}
+.st b{display:block;font-size:27px;line-height:1.3;color:var(--ink)}
+.mu{color:var(--mu)}.ok{color:var(--ok)}.bad{color:var(--bd)}
+.b{border:0;border-radius:10px;padding:9px 14px;font:inherit;font-weight:600;background:var(--pr);color:#fff;cursor:pointer}
+.b.g{background:transparent;border:1px solid var(--ln);color:var(--ink)}
+.bs{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.tg{font-size:13px;padding:2px 10px;border-radius:99px;background:var(--ln);white-space:nowrap}
+input,textarea,select{width:100%;box-sizing:border-box;font:inherit;padding:10px 12px;border:1px solid var(--ln);border-radius:10px;background:var(--cd);color:var(--ink);margin-bottom:10px}
+.tl{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tl button{background:var(--cd);border:1px solid var(--ln);border-radius:14px;padding:18px 8px;font:inherit;font-weight:600;color:var(--ink);cursor:pointer}
+.mk{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.mk input{padding:8px 4px;text-align:center;margin-bottom:6px;font-size:14px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.cal i{font-style:normal;text-align:center;padding:7px 0;border-radius:8px;font-size:13px;background:var(--ln)}
+.cal .p{color:var(--ok);background:rgba(47,125,79,.15)}.cal .a{color:var(--bd);background:rgba(179,55,46,.18)}
+nav{position:fixed;left:0;right:0;bottom:0;max-width:480px;margin:0 auto;display:flex;background:var(--cd);border-top:1px solid var(--ln);padding:3px 4px calc(3px + env(safe-area-inset-bottom,0px))}
+nav button{flex:1;background:none;border:0;border-top:3px solid transparent;font:inherit;font-size:13.5px;color:var(--mu);padding:9px 1px;cursor:pointer}
+nav .on{color:var(--ink);font-weight:700;border-top-color:var(--ac)}
+#t{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:10px;opacity:0;transition:opacity .2s;pointer-events:none;font-size:15px;white-space:nowrap}
+</style></head><body>
+<div id="app"></div><div id="t"></div>
+<script>
+const $=s=>document.querySelector(s),bn=n=>String(n).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d]),v=i=>$('#'+i).value.trim();
+const K=['বাংলা','ইংরেজি','গণিত','দ্বীনিয়াত'],RN={admin:'এডমিন',teacher:'শিক্ষক',guardian:'অভিভাবক'};
+const TABS={admin:['হোম','ছাত্র','ফি','নোটিশ','আরও'],teacher:['উপস্থিতি','পড়া','নম্বর','নোটিশ','বেতন'],guardian:['হোম','উপস্থিতি','ফি','ফলাফল','নোটিশ']};
+const S={role:'admin',tab:{admin:0,teacher:0,guardian:0},sub:null,ed:0,g:0,pub:true,
+cl:['প্লে','নার্সারি','১ম','২য়','৩য়'],
+st:[['আব্দুল্লাহ','প্লে','মো. রফিকুল'],['মারিয়াম','নার্সারি','রুবিনা বেগম'],['ইউসুফ','১ম','আবুল কালাম'],['ফাতিমা','১ম','সালমা খাতুন'],['আয়েশা','১ম','জামাল উদ্দিন'],['উমর','২য়','নাসরিন আক্তার'],['হামজা','২য়','শফিকুল ইসলাম'],['জান্নাত','৩য়','রেহানা পারভীন']].map((x,i)=>({id:101+i,n:x[0],c:x[1],pn:x[2],ph:'০১৭১২-'+bn(345600+i*111),paid:i%3==0,on:true,here:true})),
+tc:[{n:'মো. হাবিবুর রহমান',sal:6000,paid:false,on:true},{n:'আয়েশা খাতুন',sal:5500,paid:true,on:true}],
+ft:[['মাসিক বেতন',800],['ভর্তি ফি',1000],['পরীক্ষা ফি',200]],fh:[],
+ac:[{t:'অনুদান',a:5000,k:1},{t:'বিদ্যুৎ বিল',a:900,k:0}],
+nt:['আগামী বৃহস্পতিবার সকাল ১০টায় অভিভাবক সভা।','শুক্রবার সাপ্তাহিক ছুটি, শনিবার যথারীতি ক্লাস।'],
+ev:[['১৫ নভেম্বর','অভিভাবক সভা'],['২৫ ডিসেম্বর','বার্ষিক পরীক্ষা শুরু']],
+hw:['আ-কার লেখা, পৃষ্ঠা ১২','১ থেকে ২০ পর্যন্ত গোনা'],info:{a:'ঢাকা, বাংলাদেশ',p:'০১৭০০-০০০০০০'},mk:{},cm:{}};
+S.st.forEach(s=>{S.mk[s.id]=[70+s.id%5*5,75+s.id%4*5,65+s.id%6*5,85+s.id%3*4];S.cm[s.id]='নিয়মিত ও মনোযোগী।'});
+const F=id=>S.st.find(s=>s.id==id),FEE=()=>S.ft[0][1],G=m=>m>=80?'A+':m>=70?'A':m>=60?'A-':m>=50?'B':m>0?'C':'-';
+const C=h=>`<div class="c">${h}</div>`,RW=(a,b)=>`<div class="c r"><div>${a}</div>${b}</div>`,H=t=>`<h3>${t}</h3>`;
+const B=(t,f,g)=>`<button class="b${g?' g':''}" onclick="${f}">${t}</button>`,TG=(t,k)=>`<span class="tg ${k||''}">${t}</span>`;
+const I=(id,p,t,val)=>`<input id="${id}" type="${t||'text'}" placeholder="${p}" value="${val||''}">`;
+const SB=(a,b)=>`<small class="mu">${b}</small>`.replace('<small',`<b>${a}</b><br><small`);
+const T=m=>{const t=$('#t');t.textContent=m;t.style.opacity=1;clearTimeout(T.h);T.h=setTimeout(()=>t.style.opacity=0,1800)};
+const NL=()=>S.nt.map(x=>C(x)).join(''),HL=()=>S.hw.map(x=>C(x)).join(''),EV=()=>H('ক্যালেন্ডার')+S.ev.map(e=>RW(`<b>${e[1]}</b>`,TG(e[0]))).join('');
+const SEL=(id,a)=>`<select id="${id}">${a.map(c=>`<option>${c}</option>`).join('')}</select>`;
+const bal=()=>S.ac.reduce((s,x)=>s+(x.k?x.a:-x.a),0);
+const SR=q=>S.st.filter(s=>(s.n+bn(s.id)).includes(q)).map(s=>RW(SB(s.n,`ক্লাস ${s.c} · ভর্তি নং ${bn(s.id)}`),`<div class="bs">${TG(s.paid?'ফি জমা':'বকেয়া',s.paid?'ok':'bad')}${B('সম্পাদনা',`S.ed=${s.id};R()`,1)}${B('বাতিল',`DL(${s.id})`,1)}</div>`)).join('');
+const SL=()=>{$('#sl').innerHTML=SR(v('q'))};
+const DL=id=>{S.st=S.st.filter(s=>s.id!=id);T('ছাত্র বাতিল হয়েছে');R()};
+const PAY=id=>{const s=F(id);s.paid=1;S.fh.unshift({n:s.n,t:'মাসিক বেতন',a:FEE(),d:'আজ'});S.ac.unshift({t:s.n+' - ফি',a:FEE(),k:1});T('ফি জমা হয়েছে, রশিদ তৈরি');R()};
+const TA=id=>{const s=F(id);s.here=!s.here;R()};
+const TGL=id=>{const s=F(id);s.on=!s.on;T(s.on?'অ্যাকাউন্ট চালু হয়েছে':'অ্যাকাউন্ট বন্ধ হয়েছে');R()};
+const TT=i=>{S.tc[i].on=!S.tc[i].on;T(S.tc[i].on?'শিক্ষক চালু':'শিক্ষক বন্ধ');R()};
+const TP=i=>{const t=S.tc[i];t.paid=1;S.ac.unshift({t:'বেতন - '+t.n,a:t.sal,k:0});T('বেতন প্রদান হয়েছে');R()};
+const SF=s=>C(H(s.id?'তথ্য সম্পাদনা':'নতুন ভর্তি')+I('sn','ছাত্রের নাম')+I('sp','অভিভাবকের নাম')+I('sh','মোবাইল নম্বর')+SEL('sc',S.cl)+B('সংরক্ষণ',`SS(${s.id||0})`)+' '+B('বাতিল','S.ed=0;R()',1));
+const SS=id=>{const n=v('sn');if(!n)return T('ছাত্রের নাম লিখুন');const o={n,pn:v('sp'),ph:v('sh'),c:$('#sc').value};if(id)Object.assign(F(id),o);else{const i=Math.max(100,...S.st.map(s=>s.id))+1;S.st.push({id:i,paid:0,on:true,here:true,...o});S.mk[i]=[0,0,0,0];S.cm[i]=''}T('সংরক্ষিত হয়েছে');S.ed=0;R()};
+const add=(a,f)=>{if(a.some(x=>!x))return T('সব ঘর পূরণ করুন');f();R()};
+const AS={
+'ক্লাস':()=>S.cl.map(c=>RW(`<b>${c}</b>`,TG(bn(S.st.filter(s=>s.c==c).length)+' জন'))).join('')+I('nc','নতুন ক্লাসের নাম')+B('ক্লাস যোগ করুন',"add([v('nc')],()=>S.cl.push(v('nc')))"),
+'শিক্ষক':()=>S.tc.map((t,i)=>RW(SB(t.n,'বেতন ৳'+bn(t.sal)),B(t.on?'বন্ধ করুন':'চালু করুন',`TT(${i})`,t.on))).join('')+H('নতুন শিক্ষক')+I('tn','শিক্ষকের নাম')+I('ts','মাসিক বেতন','number')+B('শিক্ষক যোগ করুন',"add([v('tn'),v('ts')],()=>S.tc.push({n:v('tn'),sal:+v('ts'),paid:0,on:true}))"),
+'অভিভাবক':()=>S.st.map(s=>RW(SB(s.pn,s.n+'-এর অভিভাবক'),B(s.on?'বন্ধ করুন':'চালু করুন',`TGL(${s.id})`,s.on))).join(''),
+'বেতন':()=>S.tc.map((t,i)=>RW(SB(t.n,'৳'+bn(t.sal)),t.paid?TG('প্রদান','ok'):B('বেতন দিন',`TP(${i})`))).join(''),
+'আয়-ব্যয়':()=>`<div class="g2"><div class="c st"><b>৳${bn(S.ac.filter(x=>x.k).reduce((s,x)=>s+x.a,0))}</b>মোট আয়</div><div class="c st"><b>৳${bn(S.ac.filter(x=>!x.k).reduce((s,x)=>s+x.a,0))}</b>মোট ব্যয়</div></div>`+H('লেনদেন')+S.ac.map(x=>RW(x.t,TG((x.k?'+':'−')+'৳'+bn(x.a),x.k?'ok':'bad'))).join('')+H('নতুন হিসাব')+I('at','বিবরণ')+I('aa','টাকা','number')+SEL('ak',['আয়','ব্যয়'])+B('যোগ করুন',"add([v('at'),v('aa')],()=>S.ac.unshift({t:v('at'),a:+v('aa'),k:$('#ak').value=='আয়'}))"),
+'ফির ধরন':()=>S.ft.map(f=>RW(f[0],TG('৳'+bn(f[1])))).join('')+I('fn','ফির নাম')+I('fa','টাকা','number')+B('ফির ধরন যোগ করুন',"add([v('fn'),v('fa')],()=>S.ft.push([v('fn'),+v('fa')]))"),
+'ফলাফল':()=>C(`অবস্থা: <b>${S.pub?'অভিভাবকদের জন্য প্রকাশিত':'গোপন আছে'}</b>`)+B(S.pub?'গোপন করুন':'ফলাফল প্রকাশ করুন','S.pub=!S.pub;R()')+H('গড় ফলাফল')+S.st.map(s=>{const m=S.mk[s.id],a=Math.round(m.reduce((x,y)=>x+y,0)/4);return RW(SB(s.n,'ক্লাস '+s.c),TG(bn(a)+' · '+G(a)))}).join(''),
+'ক্যালেন্ডার':()=>EV()+I('ed','তারিখ (যেমন ২০ নভেম্বর)')+I('et','অনুষ্ঠান বা ছুটি')+B('যোগ করুন',"add([v('ed'),v('et')],()=>S.ev.push([v('ed'),v('et')]))"),
+'মাদ্রাসার তথ্য':()=>C(H('যোগাযোগের তথ্য')+I('ia','ঠিকানা','text',S.info.a)+I('ip','ফোন নম্বর','text',S.info.p)+B('সংরক্ষণ',"S.info={a:v('ia'),p:v('ip')};T('তথ্য সংরক্ষিত হয়েছে')"))};
+const V={admin:[
+()=>`<div class="g2"><div class="c st"><b>${bn(S.st.length)}</b>ছাত্র-ছাত্রী</div><div class="c st"><b>${bn(S.st.filter(s=>s.here).length)}</b>আজ উপস্থিত</div><div class="c st"><b>৳${bn(S.st.filter(s=>!s.paid).length*FEE())}</b>বকেয়া</div><div class="c st"><b>৳${bn(bal())}</b>হাতে আছে</div></div>`+H('সর্বশেষ নোটিশ')+C(S.nt[0]||'কোনো নোটিশ নেই')+H('আসছে')+C(S.ev[0]?S.ev[0][0]+': '+S.ev[0][1]:'কিছু নেই'),
+()=>S.ed?SF(S.ed>0?F(S.ed):{}):B('+ নতুন ভর্তি','S.ed=-1;R()')+`<input id="q" placeholder="নাম বা ভর্তি নম্বর খুঁজুন" oninput="SL()" style="margin-top:10px"><div id="sl">${SR('')}</div>`,
+()=>{const u=S.st.filter(s=>!s.paid);return H('বকেয়া তালিকা')+(u.length?u.map(s=>RW(SB(s.n,`ক্লাস ${s.c} · ৳${bn(FEE())}`),B('জমা নিন',`PAY(${s.id})`))).join(''):C('সবার ফি জমা হয়েছে।'))+H('জমার ইতিহাস')+(S.fh.length?S.fh.map(f=>RW(SB(f.n,f.t+' · '+f.d),TG('৳'+bn(f.a),'ok'))).join(''):C('এখনো কোনো জমা নেই।'))},
+()=>`<textarea id="nt" rows="3" placeholder="নোটিশ লিখুন"></textarea>`+B('নোটিশ প্রকাশ করুন',"add([v('nt')],()=>S.nt.unshift(v('nt')))")+H('সব নোটিশ')+NL(),
+()=>S.sub?B('‹ ফিরে যান','S.sub=null;R()',1)+H(S.sub)+AS[S.sub]():`<div class="tl">${Object.keys(AS).map(k=>`<button onclick="S.sub='${k}';R()">${k}</button>`).join('')}</div>`],
+teacher:[
+()=>H('১ম শ্রেণি, আজকের উপস্থিতি')+S.st.filter(s=>s.c=='১ম').map(s=>RW(`<b>${s.n}</b>`,B(s.here?'উপস্থিত':'অনুপস্থিত',`TA(${s.id})`,!s.here))).join('')+B('উপস্থিতি সংরক্ষণ করুন',"T('উপস্থিতি সংরক্ষিত হয়েছে')"),
+()=>`<textarea id="hw" rows="3" placeholder="আজকের পড়া বা হোমওয়ার্ক লিখুন"></textarea>`+B('অভিভাবকদের জানান',"add([v('hw')],()=>S.hw.unshift(v('hw')))")+H('আজকের পড়া')+HL(),
+()=>H('পরীক্ষার নম্বর, ১ম শ্রেণি')+S.st.filter(s=>s.c=='১ম').map(s=>C(`<b>${s.n}</b><div class="mk">${K.map((k,j)=>`<input id="m${s.id}_${j}" type="number" placeholder="${k}" value="${S.mk[s.id][j]}">`).join('')}</div><input id="c${s.id}" placeholder="মন্তব্য" value="${S.cm[s.id]||''}">`)).join('')+B('নম্বর ও মন্তব্য সংরক্ষণ',"S.st.filter(s=>s.c=='১ম').forEach(s=>{S.mk[s.id]=K.map((k,j)=>+$('#m'+s.id+'_'+j).value||0);S.cm[s.id]=v('c'+s.id)});T('নম্বর সংরক্ষিত হয়েছে')"),
+()=>NL()+EV(),
+()=>C(SB(S.tc[0].n,'মাসিক বেতন ৳'+bn(S.tc[0].sal)))+C(S.tc[0].paid?'<b class="ok">এই মাসের বেতন প্রদান হয়েছে</b>':'<b class="bad">এই মাসের বেতন বাকি</b>')],
+guardian:[
+()=>{const c=F(S.g);return C(`<b style="font-size:20px">${c.n}</b><br><small class="mu">ক্লাস ${c.c} · ভর্তি নং ${bn(c.id)}</small>`)+`<div class="g2"><div class="c st"><b class="${c.here?'ok':'bad'}">${c.here?'উপস্থিত':'অনুপস্থিত'}</b>আজ</div><div class="c st"><b>${bn(19)}/${bn(22)}</b>এই মাসে</div></div>`+H('ফি')+RW(SB('মাসিক বেতন ৳'+bn(FEE()),c.paid?'এই মাসের ফি জমা হয়েছে':'এই মাসের ফি বকেয়া'),TG(c.paid?'জমা':'বকেয়া',c.paid?'ok':'bad'))+H('আজকের পড়া')+HL()+H('মাদ্রাসার যোগাযোগ')+C(S.info.a+'<br>'+S.info.p)+B('বের হন','S.g=0;R()',1)},
+()=>{let d='';for(let i=1;i<=30;i++)d+=`<i class="${i%7==5?'':[6,13,21].includes(i)?'a':'p'}">${bn(i)}</i>`;return H('এই মাসের উপস্থিতি')+C(`<div class="cal">${d}</div>`)+C('<span class="ok">সবুজ: উপস্থিত</span> · <span class="bad">লাল: অনুপস্থিত</span> · ধূসর: ছুটি')},
+()=>{const c=F(S.g);return H('ফি জমার ইতিহাস')+RW(SB('অক্টোবর','মাসিক বেতন ৳'+bn(FEE())),TG(c.paid?'জমা':'বকেয়া',c.paid?'ok':'bad'))+RW(SB('সেপ্টেম্বর','মাসিক বেতন ৳'+bn(FEE())),TG('জমা','ok'))+RW(SB('আগস্ট','মাসিক বেতন ৳'+bn(FEE())),TG('জমা','ok'))+S.fh.filter(f=>f.n==c.n).map(f=>RW(SB(f.t,f.d),TG('৳'+bn(f.a),'ok'))).join('')},
+()=>{if(!S.pub)return C('ফলাফল এখনো প্রকাশ হয়নি।');const m=S.mk[S.g],a=Math.round(m.reduce((x,y)=>x+y,0)/4);return H('প্রথম সাময়িক পরীক্ষা')+K.map((k,j)=>RW(`<b>${k}</b>`,TG(bn(m[j])+' · '+G(m[j])))).join('')+RW('<b>গড়</b>',TG(bn(a)+' · '+G(a),'ok'))+C('শিক্ষকের মন্তব্য: '+(S.cm[S.g]||'মন্তব্য নেই'))},
+()=>NL()+EV()]};
+const GATE=()=>C(H('অভিভাবক লগইন')+'<p class="mu">নতুন হলে তথ্য দিয়ে অ্যাকাউন্ট খুলুন। ডেমোর জন্য ভর্তি নম্বর ১০৩ লিখুন।</p>'+I('gn','আপনার নাম')+I('gm','মোবাইল নম্বর')+I('ga','সন্তানের ভর্তি নম্বর')+B('প্রবেশ করুন','GL()'));
+const GL=()=>{const id=parseInt(v('ga').replace(/[০-৯]/g,d=>'০১২৩৪৫৬৭৮৯'.indexOf(d)));if(!F(id))return T('ভর্তি নম্বর মেলেনি');S.g=id;S.tab.guardian=0;T('স্বাগতম');R()};
+function R(){const r=S.role,t=S.tab[r];if(r=='guardian'&&!F(S.g))S.g=0;
+const gate=r=='guardian'&&!S.g,blk=r=='guardian'&&S.g&&!F(S.g).on;
+const body=gate?GATE():blk?C('<b class="bad">আপনার অ্যাকাউন্ট বন্ধ আছে।</b><br>মাদ্রাসার সাথে যোগাযোগ করুন।')+B('বের হন','S.g=0;R()',1):V[r][t]();
+$('#app').innerHTML=`<div class="hd"><img class="lg" src="data:image/jpeg;base64,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" alt="লোগো"><div><div class="ar">مدرسة المدينة</div><div class="en">Madrasatul Madinah</div><div class="bn">মাদরাসাতুল মাদিনাহ</div></div></div><div class="seg">${Object.keys(RN).map(k=>`<button class="${k==r?'on':''}" onclick="S.role='${k}';R()">${RN[k]}</button>`).join('')}</div><div class="sec">${body}</div>`+(gate||blk?'':`<nav>${TABS[r].map((x,i)=>`<button class="${i==t?'on':''}" onclick="S.tab['${r}']=${i};S.sub=null;S.ed=0;R()">${x}</button>`).join('')}</nav>`);
+if(r=='admin'&&t==1&&S.ed>0){const s=F(S.ed);$('#sn').value=s.n;$('#sp').value=s.pn;$('#sh').value=s.ph;$('#sc').value=s.c}}
+R();
+</script><script>
+const en=s=>String(s).replace(/[০-৯]/g,d=>'০১২৩৪৫৬৭৮৯'.indexOf(d)).replace(/\D/g,'');
+const WA=(p,m)=>`<a class="b g" target="_blank" href="https://wa.me/88${en(p)}?text=${encodeURIComponent(m)}">হোয়াটসঅ্যাপ</a>`;
+document.head.insertAdjacentHTML('beforeend','<style>a.b{text-decoration:none;display:inline-block}</style>');
+const PI=['আরবি অক্ষর','ছোট সূরা','ইংরেজি A-Z','গণিত ১-২০','ছবি আঁকা'],LV=['শিখছে','ভালো','দক্ষ'];
+Object.assign(S,{cf:{'প্লে':600,'নার্সারি':700,'১ম':800,'২য়':900,'৩য়':1000},rc:null,pr:{},lv:[],fb:[],ap:[],dy:['আজ আরবি অক্ষর আলিফ থেকে জীম পর্যন্ত শেখানো হয়েছে।'],pt:{h:'জমাদিউল আউয়াল ১৪৪৮ হিজরি',t:['৪:৪৩','১১:৪০','৩:০৮','৫:২১','৬:৩৬']},dh:'রব্বি যিদ্নী ইলমা: হে আমার রব, আমার জ্ঞান বাড়িয়ে দিন।'});
+S.st.forEach((s,i)=>{s.ds=i==1?100:0;S.pr[s.id]=[1,1,0,1,2].map((x,j)=>(x+i+j)%3)});
+Object.assign(S.tc[0],{m:'০১৭১১-১২৩৪৫৬',c:'১ম'});Object.assign(S.tc[1],{m:'০১৮১১-৬৫৪৩২১',c:'প্লে'});
+const FA=s=>(S.cf[s.c]||FEE())-(s.ds||0);
+const PRAY=()=>C(`<b>${S.pt.h}</b><br>`+['ফজর','যোহর','আসর','মাগরিব','এশা'].map((n,i)=>`${n} ${S.pt.t[i]}`).join(' · ')+`<br><small class="mu">${S.dh}</small>`);
+const MORE=o=>S.sub&&o[S.sub]?B('‹ ফিরে যান','S.sub=null;R()',1)+H(S.sub)+o[S.sub]():`<div class="tl">${Object.keys(o).map(k=>`<button onclick="S.sub='${k}';R()">${k}</button>`).join('')}</div>`;
+const DYL=()=>S.dy.map(x=>C(x)).join(''),LVL=()=>S.lv.length?S.lv.map(l=>RW(SB(l.n,l.x),TG(l.t))).join(''):C('কোনো আবেদন নেই।');
+const PC=(id,j)=>{const a=S.pr[id]=S.pr[id]||[0,0,0,0,0];a[j]=(a[j]+1)%3;R()};
+const PY=id=>{const s=F(id),a=FA(s);s.paid=1;S.fh.unshift({n:s.n,t:'মাসিক বেতন',a,d:'আজ'});S.ac.unshift({t:s.n+' - ফি',a,k:1});S.rc={n:s.n,c:s.c,a,ph:s.ph,no:S.fh.length};T('ফি জমা হয়েছে, রশিদ তৈরি');R()};
+const RCP=()=>{const r=S.rc;return C(`<b>রশিদ নং ${bn(1000+r.no)}</b><br>ছাত্র: ${r.n} (${r.c})<br>${r.t||'মাসিক বেতন'}: ৳${bn(r.a)}<br><small class="mu">মাদরাসাতুল মাদিনাহ</small><div class="bs" style="justify-content:flex-start;margin-top:8px">${B('প্রিন্ট','window.print()',1)}${WA(r.ph,`রশিদ নং ${bn(1000+r.no)}: ${r.n}-এর ৳${bn(r.a)} ফি জমা হয়েছে। জাযাকাল্লাহ।`)}${B('বন্ধ','S.rc=null;R()',1)}</div>`)};
+const SF2=s=>C(H(s.id?'তথ্য সম্পাদনা':'নতুন ভর্তি')+I('sn','ছাত্রের নাম')+I('sp','অভিভাবকের নাম')+I('sh','মোবাইল নম্বর')+SEL('sc',S.cl)+I('sd','মাসিক ছাড় (টাকা), না থাকলে ফাঁকা','number',s.ds||'')+B('সংরক্ষণ',`SS2(${s.id||0})`)+' '+B('বাতিল','S.ed=0;R()',1));
+const SS2=id=>{if(!v('sn'))return SS(id);const d=+v('sd')||0;SS(id);(id?F(id):S.st[S.st.length-1]).ds=d;R()};
+const AP2=i=>{const a=S.ap.splice(i,1)[0],id=Math.max(100,...S.st.map(s=>s.id))+1;S.st.push({id,n:a.n,pn:a.pn,ph:a.ph,c:a.c,paid:0,on:true,here:true,ds:0});S.mk[id]=[0,0,0,0];S.cm[id]='';T('ভর্তি হয়েছে, ভর্তি নম্বর '+bn(id));R()};
+const o1=V.admin[1];V.admin[1]=()=>S.ed?SF2(S.ed>0?F(S.ed):{}):o1();
+V.admin[0]=()=>`<div class="g2"><div class="c st"><b>${bn(S.st.length)}</b>ছাত্র-ছাত্রী</div><div class="c st"><b>${bn(S.st.filter(s=>s.here).length)}</b>আজ উপস্থিত</div><div class="c st"><b>৳${bn(S.st.filter(s=>!s.paid).reduce((x,s)=>x+FA(s),0))}</b>বকেয়া</div><div class="c st"><b>৳${bn(bal())}</b>হাতে আছে</div></div>`+H('নামাজ ও দোয়া')+PRAY()+H('সর্বশেষ নোটিশ')+C(S.nt[0]||'কোনো নোটিশ নেই')+H('আসছে')+C(S.ev[0]?S.ev[0][0]+': '+S.ev[0][1]:'কিছু নেই');
+V.admin[2]=()=>{const u=S.st.filter(s=>!s.paid);return (S.rc?RCP():'')+H('বকেয়া তালিকা')+(u.length?u.map(s=>RW(SB(s.n,`ক্লাস ${s.c} · ৳${bn(FA(s))}`+(s.ds?` (ছাড় ৳${bn(s.ds)})`:'')),`<div class="bs">${B('জমা নিন',`PY(${s.id})`)}${WA(s.ph,`আসসালামু আলাইকুম, ${s.n}-এর এই মাসের ফি ৳${bn(FA(s))} বকেয়া আছে। - মাদরাসাতুল মাদিনাহ`)}</div>`)).join(''):C('সবার ফি জমা হয়েছে।'))+H('জমার ইতিহাস')+(S.fh.length?S.fh.map(f=>RW(SB(f.n,f.t+' · '+f.d),TG('৳'+bn(f.a),'ok'))).join(''):C('এখনো কোনো জমা নেই।'))};
+AS['শিক্ষক']=()=>S.tc.map((t,i)=>RW(SB(t.n,`বেতন ৳${bn(t.sal)} · ক্লাস ${t.c||'—'}<br>মোবাইল ${t.m||'—'}`),B(t.on?'বন্ধ করুন':'চালু করুন',`TT(${i})`,t.on))).join('')+H('নতুন শিক্ষক')+I('tn','শিক্ষকের নাম')+I('tm','মোবাইল নম্বর (লগইন আইডি)')+I('tp','শুরুর পাসওয়ার্ড')+I('ts','মাসিক বেতন','number')+SEL('tk',S.cl)+B('শিক্ষক যোগ করুন',"add([v('tn'),v('tm'),v('tp'),v('ts')],()=>S.tc.push({n:v('tn'),m:v('tm'),c:$('#tk').value,sal:+v('ts'),paid:0,on:true}))");
+{const o=AS['ফির ধরন'];AS['ফির ধরন']=()=>o()+H('ক্লাস অনুযায়ী মাসিক বেতন')+S.cl.map((c,i)=>RW(`<b>${c}</b>`,`<input id="cf${i}" type="number" value="${S.cf[c]||FEE()}" style="width:110px;margin:0">`)).join('')+B('সংরক্ষণ',"S.cl.forEach((c,i)=>S.cf[c]=+$('#cf'+i).value||0);T('ক্লাসের ফি সংরক্ষিত হয়েছে')")}
+AS['ভর্তির আবেদন']=()=>S.ap.length?S.ap.map((a,i)=>RW(SB(a.n,`ক্লাস ${a.c} · ${a.pn} · ${a.ph}`),`<div class="bs">${B('ভর্তি করুন',`AP2(${i})`)}${B('বাতিল',`S.ap.splice(${i},1);R()`,1)}</div>`)).join(''):C('কোনো নতুন আবেদন নেই। অভিভাবক লগইন পাতা থেকে আবেদন করতে পারেন।');
+AS['ছুটি ও মতামত']=()=>H('ছুটির আবেদন')+LVL()+H('অভিভাবকের মতামত')+(S.fb.length?S.fb.map(f=>C(SB(f.n,f.x))).join(''):C('কোনো মতামত নেই।'));
+AS['নামাজ ও দোয়া']=()=>C(I('pn','হিজরি তারিখ','text',S.pt.h)+I('pt','পাঁচ ওয়াক্তের সময় (কমা দিয়ে)','text',S.pt.t.join(','))+`<textarea id="pd" rows="3">${S.dh}</textarea>`+B('সংরক্ষণ',"S.pt={h:v('pn'),t:v('pt').split(',')};S.dh=v('pd');T('সংরক্ষিত হয়েছে')"));
+AS['ব্যাকআপ']=()=>{const t=['ভর্তি নং\tনাম\tক্লাস\tঅভিভাবক\tমোবাইল\tফি'].concat(S.st.map(s=>[bn(s.id),s.n,s.c,s.pn,s.ph,s.paid?'জমা':'বকেয়া'].join('\t'))).join('\n');return C('নিচের তথ্য কপি করে Excel বা Google Sheets-এ পেস্ট করুন। আসল অ্যাপে এক ক্লিকে Excel ও PDF নামবে।')+`<textarea id="bk" rows="8" readonly>${t}</textarea>`+B('কপি করুন',"navigator.clipboard.writeText($('#bk').value).then(()=>T('কপি হয়েছে'),()=>T('ঘরটি চেপে ধরে কপি করুন'))")};
+TABS.teacher=['উপস্থিতি','পড়া','নম্বর','অগ্রগতি','আরও'];TABS.guardian=['হোম','উপস্থিতি','ফি','ফলাফল','আরও'];
+const TS={'ডায়েরি':()=>`<textarea id="dy" rows="3" placeholder="আজ কী শেখানো হয়েছে"></textarea>`+B('ডায়েরি প্রকাশ করুন',"add([v('dy')],()=>S.dy.unshift(v('dy')))")+H('সব ডায়েরি')+DYL(),'নোটিশ ও ক্যালেন্ডার':()=>NL()+EV(),'আমার বেতন':()=>C(SB(S.tc[0].n,'মাসিক বেতন ৳'+bn(S.tc[0].sal)))+C(S.tc[0].paid?'<b class="ok">এই মাসের বেতন প্রদান হয়েছে</b>':'<b class="bad">এই মাসের বেতন বাকি</b>'),'ছুটির আবেদন':LVL};
+V.teacher[3]=()=>H('অগ্রগতি, ১ম শ্রেণি')+'<p class="mu">ট্যাপ করলে স্তর বদলাবে</p>'+S.st.filter(s=>s.c=='১ম').map(s=>C(`<b>${s.n}</b><div class="bs" style="justify-content:flex-start;margin-top:8px">${PI.map((p,j)=>B(`${p}: ${LV[(S.pr[s.id]||[])[j]||0]}`,`PC(${s.id},${j})`,1)).join('')}</div>`)).join('');
+V.teacher[4]=()=>MORE(TS);
+const GS={'অগ্রগতি':()=>PI.map((p,j)=>RW(`<b>${p}</b>`,TG(LV[(S.pr[S.g]||[])[j]||0],(S.pr[S.g]||[])[j]?'ok':''))).join(''),'ডায়েরি':DYL,'নোটিশ ও ক্যালেন্ডার':()=>NL()+EV(),'ছুটির আবেদন':()=>SEL('lt',['ছুটি','অসুস্থতা'])+`<textarea id="lx" rows="3" placeholder="কারণ লিখুন"></textarea>`+B('আবেদন পাঠান',"add([v('lx')],()=>S.lv.unshift({n:F(S.g).n,t:$('#lt').value,x:v('lx')}))")+H('আমার আবেদন')+(S.lv.filter(l=>l.n==F(S.g).n).map(l=>RW(l.x,TG(l.t))).join('')||C('কোনো আবেদন নেই।')),'মতামত বক্স':()=>`<textarea id="fx" rows="3" placeholder="আপনার মতামত বা অভিযোগ লিখুন"></textarea>`+B('মতামত পাঠান',"add([v('fx')],()=>S.fb.unshift({n:F(S.g).pn,x:v('fx')}))")};
+V.guardian[4]=()=>MORE(GS);
+{const h=V.guardian[0],f=V.guardian[2],fx=s=>s.replaceAll('৳'+bn(FEE()),'৳'+bn(FA(F(S.g))));V.guardian[0]=()=>fx(h()).replace('<h3>আজকের পড়া</h3>',H('নামাজ ও দোয়া')+PRAY()+'<h3>আজকের পড়া</h3>');V.guardian[2]=()=>fx(f())}
+const AD=()=>C(H('নতুন ভর্তির আবেদন')+I('an','ছাত্রের নাম')+I('ap','অভিভাবকের নাম')+I('am','মোবাইল নম্বর')+SEL('acl',S.cl)+B('আবেদন পাঠান',"add([v('an'),v('ap'),v('am')],()=>{S.ap.push({n:v('an'),pn:v('ap'),ph:v('am'),c:$('#acl').value});T('আবেদন পাঠানো হয়েছে')})"));
+const R0=R;R=function(){R0();if(S.role=='guardian'&&!S.g)$('.sec').insertAdjacentHTML('beforeend',AD())};
+R();
+</script><script>
+S.tc[0].cs=['১ম','২য়'];S.tc[1].cs=['প্লে','নার্সারি','৩য়'];S.tcl='১ম';S.te=null;
+const TC=()=>S.tc[0].cs||[],CS=()=>S.st.filter(s=>s.c==S.tcl),NOC=()=>C('এডমিন এখনো আপনাকে কোনো ক্লাসের দায়িত্ব দেননি।');
+const CP=()=>{if(!TC().includes(S.tcl))S.tcl=TC()[0];return `<div class="bs" style="justify-content:flex-start;margin-bottom:10px">${TC().map(c=>B(c,`S.tcl='${c}';R()`,c!=S.tcl)).join('')}</div>`};
+const CK=sel=>'<p class="mu">দায়িত্বের ক্লাস (একাধিক বেছে নিন)</p>'+S.cl.map((c,i)=>`<label style="display:inline-block;margin:0 14px 8px 0"><input type="checkbox" id="ck${i}" ${sel.includes(c)?'checked':''} style="width:auto;margin:0 5px 0 0">${c}</label>`).join('');
+const PK=()=>S.cl.filter((c,i)=>$('#ck'+i).checked);
+const TCS=i=>{S.tc[i].cs=PK();S.te=null;T('ক্লাসের দায়িত্ব সংরক্ষিত হয়েছে');R()};
+AS['শিক্ষক']=()=>S.tc.map((t,i)=>RW(SB(t.n,`বেতন ৳${bn(t.sal)} · ক্লাস ${(t.cs||[]).join(', ')||'—'}<br>মোবাইল ${t.m||'—'}`),`<div class="bs">${B('ক্লাস বদলান',`S.te=${i};R()`,1)}${B(t.on?'বন্ধ করুন':'চালু করুন',`TT(${i})`,t.on)}</div>`)).join('')+(S.te!=null?C(H(S.tc[S.te].n+'-এর ক্লাস')+CK(S.tc[S.te].cs||[])+B('সংরক্ষণ',`TCS(${S.te})`)+' '+B('বাতিল','S.te=null;R()',1)):H('নতুন শিক্ষক')+I('tn','শিক্ষকের নাম')+I('tm','মোবাইল নম্বর (লগইন আইডি)')+I('tp','শুরুর পাসওয়ার্ড')+I('ts','মাসিক বেতন','number')+CK([])+B('শিক্ষক যোগ করুন',"add([v('tn'),v('tm'),v('tp'),v('ts')],()=>S.tc.push({n:v('tn'),m:v('tm'),cs:PK(),sal:+v('ts'),paid:0,on:true}))"));
+V.teacher[0]=()=>!TC().length?NOC():CP()+H(`${S.tcl} শ্রেণি, আজকের উপস্থিতি`)+(CS().map(s=>RW(`<b>${s.n}</b>`,B(s.here?'উপস্থিত':'অনুপস্থিত',`TA(${s.id})`,!s.here))).join('')||C('এই ক্লাসে এখনো কোনো ছাত্র নেই।'))+B('উপস্থিতি সংরক্ষণ করুন',"T('উপস্থিতি সংরক্ষিত হয়েছে')");
+V.teacher[2]=()=>!TC().length?NOC():CP()+H(`পরীক্ষার নম্বর, ${S.tcl} শ্রেণি`)+CS().map(s=>C(`<b>${s.n}</b><div class="mk">${K.map((k,j)=>`<input id="m${s.id}_${j}" type="number" placeholder="${k}" value="${S.mk[s.id][j]}">`).join('')}</div><input id="c${s.id}" placeholder="মন্তব্য" value="${S.cm[s.id]||''}">`)).join('')+B('নম্বর ও মন্তব্য সংরক্ষণ',"CS().forEach(s=>{S.mk[s.id]=K.map((k,j)=>+$('#m'+s.id+'_'+j).value||0);S.cm[s.id]=v('c'+s.id)});T('নম্বর সংরক্ষিত হয়েছে')");
+V.teacher[3]=()=>!TC().length?NOC():CP()+H(`অগ্রগতি, ${S.tcl} শ্রেণি`)+'<p class="mu">ট্যাপ করলে স্তর বদলাবে</p>'+CS().map(s=>C(`<b>${s.n}</b><div class="bs" style="justify-content:flex-start;margin-top:8px">${PI.map((p,j)=>B(`${p}: ${LV[(S.pr[s.id]||[])[j]||0]}`,`PC(${s.id},${j})`,1)).join('')}</div>`)).join('');
+R();
+</script><script>
+(function(){
+const LS=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);v===null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){return null}};
+const KS=['st','cl','tc','ft','fh','ac','nt','ev','hw','info','mk','cm','cf','pr','lv','fb','ap','dy','pt','dh','pub','att','pw','mo','dy0'];
+try{const d=JSON.parse(LS('mmv1')||'null');if(d)KS.forEach(k=>{if(d[k]!==undefined)S[k]=d[k]})}catch(e){}
+S.pw=S.pw||{admin:'1234'};S.att=S.att||{};S.tc.forEach(t=>{if(!t.p)t.p='1234'});
+const n0=new Date(),P=x=>String(x).padStart(2,'0'),td=n0.getFullYear()+'-'+P(n0.getMonth()+1)+'-'+P(n0.getDate()),mo=td.slice(0,7);
+if(S.mo&&S.mo!==mo){S.st.forEach(s=>s.paid=0);S.tc.forEach(t=>t.paid=0)}S.mo=mo;
+if(S.dy0!==td){S.st.forEach(s=>s.here=true);S.dy0=td}
+const SV=()=>LS('mmv1',JSON.stringify(Object.fromEntries(KS.map(k=>[k,S[k]]))));
+const mv=i=>S.tc.unshift(S.tc.splice(i,1)[0]);
+try{const a=JSON.parse(LS('mmau')||'null');if(a){if(a.r=='teacher'){const i=S.tc.findIndex(t=>t.m==a.m);if(i>=0&&S.tc[i].on){mv(i);S.au={r:'teacher'}}}else if(a.r=='guardian'){if(F(a.g)){S.g=a.g;S.au={r:'guardian'}}}else S.au={r:'admin'}}}catch(e){}
+window.LR=r=>{S.lr=r;R()};
+window.LGN=()=>{const r=S.lr||'guardian',a=v('l1'),b=r=='admin'?'':v('l2');
+if(r=='admin'){if(a!==S.pw.admin)return T('পাসওয়ার্ড ভুল');S.au={r}}
+else if(r=='teacher'){const i=S.tc.findIndex(t=>en(t.m||'')==en(a)&&t.p==b);if(i<0)return T('মোবাইল বা পাসওয়ার্ড ভুল');if(!S.tc[i].on)return T('অ্যাকাউন্ট বন্ধ আছে');mv(i);S.au={r}}
+else{const id=+en(a),s=F(id);if(!s||en(s.ph)!==en(b))return T('ভর্তি নম্বর বা মোবাইল মেলেনি');if(!s.on)return T('অ্যাকাউন্ট বন্ধ আছে');S.g=id;S.au={r}}
+S.role=r;S.tab[r]=0;S.sub=null;LS('mmau',JSON.stringify({r,g:S.g||0,m:r=='teacher'?S.tc[0].m:''}));R();
+if(r=='admin'&&S.pw.admin=='1234')T('পাসওয়ার্ড বদলে নিন (আরও → পাসওয়ার্ড)')};
+window.LO=()=>{S.au=null;S.g=0;S.lr='guardian';LS('mmau',null);R()};
+const R2=R;
+R=function(){
+if(!S.au){S.role='guardian';S.g=0;R2();const r=S.lr||'guardian',f={admin:['','অ্যাডমিন পাসওয়ার্ড'],teacher:['মোবাইল নম্বর','পাসওয়ার্ড'],guardian:['ভর্তি নম্বর','অভিভাবকের মোবাইল নম্বর']}[r];
+$('.sec').innerHTML=C(H('লগইন')+`<div class="bs" style="justify-content:flex-start;margin-bottom:10px">${(r=='admin'?['admin','teacher','guardian']:['teacher','guardian']).map(k=>B(RN[k],`LR('${k}')`,k!=r)).join('')}</div>`+(r=='admin'?I('l1',f[1],'password'):I('l1',f[0])+I('l2',f[1],r=='teacher'?'password':'text'))+B('প্রবেশ করুন','LGN()'))+AD();
+const sg=$('.seg');sg&&sg.remove();const lg=$('.lg');if(lg)lg.onclick=()=>{S.lt=(S.lt||0)+1;clearTimeout(S.lh);S.lh=setTimeout(()=>S.lt=0,2500);if(S.lt>=5){S.lt=0;S.lr='admin';R()}};return}
+S.role=S.au.r;R2();const sg=$('.seg');sg&&sg.remove();
+const h=$('.hd');h&&h.insertAdjacentHTML('beforeend','<button class="b g" onclick="LO()" style="margin-left:auto;flex:none;white-space:nowrap;padding:6px 10px;font-size:13px;color:#EBDDC3;border-color:var(--ac)">বের হন</button>');SV()};
+const ot=AS['শিক্ষক'];AS['শিক্ষক']=()=>ot().replace("m:v('tm'),","m:v('tm'),p:v('tp'),");
+window.SAV=()=>{S.att[td]=S.att[td]||{};S.st.filter(s=>s.c==S.tcl).forEach(s=>S.att[td][s.id]=!!s.here);T('উপস্থিতি সংরক্ষিত হয়েছে');SV()};
+const o0=V.teacher[0];V.teacher[0]=()=>o0().replace("T('উপস্থিতি সংরক্ষিত হয়েছে')","SAV()");
+const MS=id=>{const y=n0.getFullYear(),m=n0.getMonth(),dm=new Date(y,m+1,0).getDate();let p=0,a=0,d='';for(let i=1;i<=dm;i++){const r=(S.att[y+'-'+P(m+1)+'-'+P(i)]||{})[id];if(r===true)p++;if(r===false)a++;d+=`<i class="${r===true?'p':r===false?'a':''}">${bn(i)}</i>`}return[p,a,d]};
+V.guardian[1]=()=>{const[p,a,d]=MS(S.g);return H('এই মাসের উপস্থিতি')+C(`<div class="cal">${d}</div>`)+C(`উপস্থিত <b class="ok">${bn(p)}</b> দিন · অনুপস্থিত <b class="bad">${bn(a)}</b> দিন<br><small class="mu">ধূসর: ছুটি বা রেকর্ড নেই</small>`)};
+const g0=V.guardian[0];V.guardian[0]=()=>{const[p,a]=MS(S.g);return g0().replace('১৯/২২',bn(p)+'/'+bn(p+a)).replace('<button class="b g" onclick="S.g=0;R()">বের হন</button>','')};
+const ES=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;'),ob=AS['ব্যাকআপ'];
+AS['ব্যাকআপ']=()=>C('নিয়মিত ব্যাকআপ নিন এবং ফাইলটি নিরাপদ জায়গায় রাখুন।')+H('ফাইল ডাউনলোড')+B('ছাত্র তালিকা (Excel/CSV)','dlCSV()')+B('ব্যাকআপ ফাইল (JSON)','dlJSON()',1)+H('সম্পূর্ণ ব্যাকআপ (JSON)')+`<textarea id="bj" rows="4" readonly>${ES(JSON.stringify(Object.fromEntries(BKK.map(k=>[k,S[k]]))))}</textarea>`+B('কপি করুন',"navigator.clipboard.writeText($('#bj').value).then(()=>T('কপি হয়েছে'),()=>T('ঘরটি চেপে ধরে কপি করুন'))")+H('রিস্টোর')+`<textarea id="rs" rows="3" placeholder="ব্যাকআপ এখানে পেস্ট করুন"></textarea>`+B('রিস্টোর করুন',"try{const d=JSON.parse(v('rs'));['st','cl','tc','ft','fh','ac','nt','ev','hw','info','mk','cm','cf','pr','lv','fb','ap','dy','pt','dh','pub','att'].forEach(k=>{if(d[k]!==undefined)S[k]=d[k]});T('রিস্টোর হয়েছে');R()}catch(e){T('ব্যাকআপ ঠিক নেই')}");
+AS['পাসওয়ার্ড']=()=>C(I('p1','নতুন অ্যাডমিন পাসওয়ার্ড','password')+B('বদলান',"add([v('p1')],()=>{S.pw.admin=v('p1');T('পাসওয়ার্ড বদলেছে')})"))+H('শিক্ষকের পাসওয়ার্ড')+S.tc.map((t,i)=>RW(SB(t.n,t.m||''),`<div class="bs"><input id="tp${i}" value="${t.p||''}" style="width:110px;margin:0">${B('সেভ',`S.tc[${i}].p=v('tp${i}');T('সংরক্ষিত')`,1)}</div>`)).join('');
+setInterval(SV,3000);addEventListener('pagehide',SV);
+R();
+})();
+</script>
+<script>
+(function(){
+const L=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}};
+const P=x=>String(x).padStart(2,'0'),n0=new Date(),td=n0.getFullYear()+'-'+P(n0.getMonth()+1)+'-'+P(n0.getDate());
+const ES=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+const K2=['mkx','cx','ex','sb','pc','arch','rt','hz','sh','bh','ms','ta'];
+S.ex=['প্রথম সাময়িক','দ্বিতীয় সাময়িক','বার্ষিক'];S.cx=S.ex[0];S.mkx={};S.sb={};S.pc={c:'Dhaka'};
+try{const d=JSON.parse(L('mmv2')||'null');if(d)K2.forEach(k=>{if(d[k]!==undefined)S[k]=d[k]})}catch(e){}
+window.SW=x=>{S.cx=x;S.mkx[x]=S.mkx[x]||{};S.st.forEach(s=>{S.mkx[x][s.id]=S.mkx[x][s.id]||[0,0,0,0]});S.mk=S.mkx[x]};
+S.mkx[S.cx]=S.mkx[S.cx]||S.mk;SW(S.cx);
+const EXP=()=>`<div class="bs" style="justify-content:flex-start;margin-bottom:10px">${S.ex.map(x=>B(x,`SW('${x}');R()`,x!=S.cx)).join('')}</div>`;
+const t2=V.teacher[2];V.teacher[2]=()=>EXP()+t2();
+const g3=V.guardian[3];V.guardian[3]=()=>EXP()+g3().replace('প্রথম সাময়িক পরীক্ষা',S.cx);
+const af=AS['ফলাফল'];AS['ফলাফল']=()=>EXP()+af();
+document.head.insertAdjacentHTML('beforeend','<style>@media(max-width:430px){.hd{gap:10px;padding:14px 12px}.lg{width:52px;height:52px}.ar{font-size:25px}.en{font-size:17px}.bn{font-size:12px}}.bs .tg{align-self:center}#pv{display:none;max-width:480px;margin:0 auto;padding:16px}#pv.on{display:block}body.pvo nav,body.pvo #t{display:none}@media print{nav,.hd,.seg,.np,button{display:none!important}}</style>');
+window.PV=h=>{let p=$('#pv');if(!p){document.body.insertAdjacentHTML('beforeend','<div id="pv"></div>');p=$('#pv')}p.innerHTML=h;p.className='on';$('#app').style.display='none';document.body.classList.add('pvo');scrollTo(0,0)};
+window.PX=()=>{$('#pv').className='';$('#app').style.display='';document.body.classList.remove('pvo')};
+const NP='<p class="np"><button class="b" onclick="print()">প্রিন্ট / PDF</button> <button class="b g" onclick="PX()">বন্ধ</button></p>';
+const HD=t=>`<div style="text-align:center"><b style="font-size:20px">মাদরাসাতুল মাদিনাহ</b><br><span class="mu">${ES(S.info.a)}</span><br><b>${t}</b></div>`;
+window.MSH=id=>{const s=F(id),m=S.mk[id]||[0,0,0,0],a=Math.round(m.reduce((x,y)=>x+y,0)/4);PV(HD(S.cx+' — মার্কশিট')+C(`নাম: <b>${ES(s.n)}</b><br>ক্লাস: ${s.c} · ভর্তি নং ${bn(s.id)}<br>অভিভাবক: ${ES(s.pn)}`)+K.map((k,j)=>RW(k,bn(m[j])+' · '+G(m[j]))).join('')+RW('<b>গড়</b>','<b>'+bn(a)+' · '+G(a)+'</b>')+C('মন্তব্য: '+ES(S.cm[id]||'—'))+NP)};
+const LQ=cb=>{if(window.QRCode)return cb();const e=document.createElement('script');e.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';e.onload=cb;document.head.appendChild(e)};
+window.IDC=id=>{const s=F(id);PV(C(HD('পরিচয়পত্র')+`<div style="display:flex;gap:14px;align-items:center;margin-top:12px"><div id="qr" style="width:110px;height:110px"></div><div><b style="font-size:18px">${ES(s.n)}</b><br>ক্লাস: ${s.c}<br>ভর্তি নং: ${bn(s.id)}<br>অভিভাবক: ${ES(s.pn)}<br>${ES(s.ph)}</div></div>`)+NP);LQ(()=>{try{new QRCode($('#qr'),{text:'MM-'+s.id,width:110,height:110})}catch(e){}})};
+AS['মার্কশিট ও আইডি']=()=>EXP()+S.st.map(s=>RW(SB(ES(s.n),`ক্লাস ${s.c}`),`<div class="bs">${B('মার্কশিট',`MSH(${s.id})`,1)}${B('আইডি',`IDC(${s.id})`,1)}</div>`)).join('');
+AS['মাসিক রিপোর্ট']=()=>{const g={},rows=['তারিখ\tবিবরণ\tধরন\tটাকা'];S.ac.forEach(x=>{const d=x.d||td,m=d.slice(0,7);g[m]=g[m]||[0,0];g[m][x.k?0:1]+=x.a;rows.push([d,x.t,x.k?'আয়':'ব্যয়',x.a].join('\t'))});const ms=Object.keys(g).sort().reverse(),mx=Math.max(1,...ms.map(m=>Math.max(...g[m])));
+return (ms.map(m=>C(`<b>${bn(m)}</b>`+[['আয়',0,'var(--ok)'],['ব্যয়',1,'var(--bd)']].map(r=>`<div style="margin-top:6px">${r[0]}: ৳${bn(g[m][r[1]])}<div style="height:8px;border-radius:4px;background:${r[2]};width:${Math.max(2,g[m][r[1]]/mx*100)}%"></div></div>`).join('')+`<div style="margin-top:6px"><b>উদ্বৃত্ত: ৳${bn(g[m][0]-g[m][1])}</b></div>`)).join('')||C('কোনো লেনদেন নেই।'))+H('Excel/Sheets-এর জন্য')+`<textarea id="cv" rows="5" readonly>${ES(rows.join('\n'))}</textarea>`+B('কপি করুন',"navigator.clipboard.writeText($('#cv').value).then(()=>T('কপি হয়েছে'),()=>T('ঘরটি চেপে ধরে কপি করুন'))")};
+const HM=['মুহাররম','সফর','রবিউল আউয়াল','রবিউস সানি','জমাদিউল আউয়াল','জমাদিউস সানি','রজব','শাবান','রমজান','শাওয়াল','জিলকদ','জিলহজ'];
+window.PA=async q=>{try{S.pc.c=(q===true?S.pc.c:v('pcity'))||'Dhaka';const j=(await(await fetch('https://api.aladhan.com/v1/timingsByCity?method=1&school=1&country=Bangladesh&city='+encodeURIComponent(S.pc.c))).json()).data,t=j.timings,f=x=>{const a=t[x].split(':'),h=+a[0];return bn(((h+11)%12)+1)+':'+bn(a[1])},hj=j.date.hijri;S.pt={h:bn(hj.day)+' '+HM[hj.month.number-1]+' '+bn(hj.year)+' হিজরি',t:['Fajr','Dhuhr','Asr','Maghrib','Isha'].map(f)};if(q!==true)T('সময় আপডেট হয়েছে');R()}catch(e){if(q!==true)T('ইন্টারনেট বা শহরের নাম ঠিক নেই')}};
+const op=AS['নামাজ ও দোয়া'];AS['নামাজ ও দোয়া']=()=>op()+C(I('pcity','শহর (ইংরেজিতে, যেমন Dhaka)','text',S.pc.c)+B('সময় ও হিজরি তারিখ অটো আপডেট','PA()'));
+window.SBS=()=>{CS().forEach(s=>{S.sb[s.id]={d:td,s:v('sb1'+s.id),a:v('sb2'+s.id),m:v('sb3'+s.id)}});T('সবক সংরক্ষিত হয়েছে');R()};
+const sbv=(id,k)=>ES((S.sb[id]||{})[k]||'');
+TS['সবক']=()=>!TC().length?NOC():CP()+CS().map(s=>C(`<b>${ES(s.n)}</b>`+I('sb1'+s.id,'সবক','text',sbv(s.id,'s'))+I('sb2'+s.id,'সবকি','text',sbv(s.id,'a'))+I('sb3'+s.id,'মানজিল','text',sbv(s.id,'m')))).join('')+B('সংরক্ষণ','SBS()');
+GS['সবক']=()=>{const x=S.sb[S.g];return x?C(`<small class="mu">${x.d}</small><br>সবক: <b>${ES(x.s)||'—'}</b><br>সবকি: <b>${ES(x.a)||'—'}</b><br>মানজিল: <b>${ES(x.m)||'—'}</b>`):C('এখনো লেখা হয়নি।')};
+const KA=['st','cl','tc','ft','fh','ac','nt','ev','hw','info','cm','cf','pr','lv','fb','ap','dy','pt','dh','pub','att','pw','mo','mkx','ex','sb','pc','arch','rt','hz','sh','bh','ms','ta'];
+const ME=Math.random().toString(36).slice(2),TK=t=>t.m||t.n;
+const snap=()=>{const o=Object.fromEntries(KA.map(k=>[k,S[k]]));o.tc=[...S.tc].sort((a,b)=>TK(a).localeCompare(TK(b)));return JSON.stringify(o)};
+const RF=()=>{try{if(S.au&&S.au.r=='teacher'){const a=JSON.parse(L('mmau')),i=S.tc.findIndex(t=>t.m==a.m);if(i>0)S.tc.unshift(S.tc.splice(i,1)[0])}}catch(e){}};
+const ld=s=>{const d=JSON.parse(s);KA.forEach(k=>{if(d[k]!==undefined)S[k]=d[k]});SW(S.cx);RF()};
+let db=null,last='';
+const js=u=>new Promise((ok,no)=>{const e=document.createElement('script');e.src=u;e.onload=ok;e.onerror=no;document.head.appendChild(e)});
+const FBS=()=>{const c=L('mmfb');if(!c||db)return;const B0='https://www.gstatic.com/firebasejs/10.12.2/firebase-';
+js(B0+'app-compat.js').then(()=>js(B0+'auth-compat.js')).then(()=>js(B0+'firestore-compat.js')).then(()=>{firebase.initializeApp(JSON.parse(c));return firebase.auth().signInAnonymously()}).then(()=>{db=firebase.firestore().doc('madrasa/main');S.fbst='সংযুক্ত ✓';
+db.onSnapshot(s=>{if(!s.exists)return;const d=s.data();if(d.by===ME||d.data===last)return;last=d.data;try{ld(d.data);R()}catch(e){}});
+setInterval(()=>{const x=snap();if(x!==last){last=x;db.set({data:x,by:ME,t:Date.now()}).catch(e=>{S.fbst='লেখা যায়নি: '+e.message})}},3000)}).catch(e=>{S.fbst='সংযোগ হয়নি: '+(e.message||e)})};
+window.FBON=()=>{try{JSON.parse(v('fbc'));L('mmfb',v('fbc'));S.fbst='সংযোগ হচ্ছে…';FBS();T('চালু হচ্ছে')}catch(e){T('কনফিগ ঠিক নেই (JSON হতে হবে)')}};
+window.FBOFF=()=>{try{localStorage.removeItem('mmfb')}catch(e){}T('বন্ধ হয়েছে, অ্যাপ আবার খুলুন')};
+AS['ক্লাউড সিঙ্ক']=()=>C('<p class="mu">Firebase কনসোল → Project settings → Web app-এর firebaseConfig এখানে JSON আকারে পেস্ট করুন। সব ডিভাইসে একই ডেটা দেখাবে।</p>'+`<textarea id="fbc" rows="6" placeholder='{"apiKey":"...","projectId":"..."}'>${ES(L('mmfb')||'')}</textarea>`+B('চালু করুন','FBON()')+' '+B('বন্ধ করুন','FBOFF()',1))+C(ES(S.fbst||'বন্ধ আছে'));
+const ST=()=>{S.ac.forEach(x=>{if(!x.d)x.d=td});S.fh.forEach(f=>{if(!f.dt)f.dt=td})};
+const SV2=()=>L('mmv2',JSON.stringify(Object.fromEntries(K2.map(k=>[k,S[k]]))));
+const R3=R;R=function(){ST();R3();SV2()};
+setInterval(SV2,3000);addEventListener('pagehide',SV2);
+R();FBS();if(S.au&&S.pc.d!==td){S.pc.d=td;PA(true)}
+})();
+</script>
+<script>
+(function(){
+const ES=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+const n0=new Date(),P=x=>String(x).padStart(2,'0'),td=n0.getFullYear()+'-'+P(n0.getMonth()+1)+'-'+P(n0.getDate()),mo=td.slice(0,7);
+S.arch=S.arch||[];S.rt=S.rt||{};S.hz=S.hz||{};S.sh=S.sh||{};S.bh=S.bh||{};S.ms=S.ms||[];S.ta=S.ta||{};
+try{const t=localStorage.getItem('mmth');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}
+window.TH=()=>{const n=document.documentElement.getAttribute('data-theme')=='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('mmth',n)}catch(e){}};
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('button'),o=b&&b.getAttribute('onclick')||'';if(/^DL\(/.test(o)&&!confirm('এই ছাত্রকে স্থায়ীভাবে বাতিল করবেন?')){e.stopImmediatePropagation();e.preventDefault()}},true);
+const PT=s=>s.ptm==mo?(s.pt||0):0,DU=s=>Math.max(0,FA(s)-PT(s));
+window.PP=id=>{const s=F(id),a=+v('pa'+id)||0;if(a<=0)return T('টাকার পরিমাণ লিখুন');const b=PT(s),m=Math.min(a,FA(s)-b);s.ptm=mo;s.pt=b+m;if(s.pt>=FA(s))s.paid=1;
+S.fh.unshift({n:s.n,t:'মাসিক বেতন'+(s.paid?'':' (আংশিক)'),a:m,d:'আজ',dt:td,m:v('pm'),x:v('px')});S.ac.unshift({t:s.n+' - ফি',a:m,k:1,d:td});S.rc={n:s.n,c:s.c,a:m,ph:s.ph,no:S.fh.length};T('ফি জমা হয়েছে, রশিদ তৈরি');R()};
+window.OF=()=>{const s=S.st.find(x=>x.n==$('#of_s').value),t=$('#of_t').value,a=+v('of_a')||(S.ft.find(f=>f[0]==t)||[0,0])[1];if(!s||!a)return T('পরিমাণ লিখুন');
+S.fh.unshift({n:s.n,t,a,d:'আজ',dt:td,m:v('pm'),x:v('px')});S.ac.unshift({t:s.n+' - '+t,a,k:1,d:td});S.rc={n:s.n,c:s.c,a,t,ph:s.ph,no:S.fh.length};T('জমা হয়েছে');R()};
+V.admin[2]=()=>{const u=S.st.filter(s=>!s.paid);return(S.rc?RCP():'')+H('জমা নেওয়ার মাধ্যম')+C(SEL('pm',['হাতে নগদ','বিকাশ','নগদ','ব্যাংক'])+I('px','ট্রানজেকশন আইডি (ঐচ্ছিক)'))+H('বকেয়া তালিকা')+(u.length?u.map(s=>RW(SB(ES(s.n),`ক্লাস ${s.c} · বাকি ৳${bn(DU(s))}`+(PT(s)?` (জমা ৳${bn(PT(s))})`:'')),`<div class="bs"><input id="pa${s.id}" type="number" value="${DU(s)}" style="width:84px;margin:0">${B('জমা',`PP(${s.id})`)}${WA(s.ph,`আসসালামু আলাইকুম, ${s.n}-এর এই মাসের ফি ৳${bn(DU(s))} বাকি আছে। - মাদরাসাতুল মাদিনাহ`)}</div>`)).join(''):C('সবার ফি জমা হয়েছে।'))
++H('অন্য ফি (ভর্তি, পরীক্ষা ইত্যাদি)')+C(SEL('of_s',S.st.map(s=>s.n))+SEL('of_t',S.ft.map(f=>f[0]))+I('of_a','টাকা (ফাঁকা থাকলে নির্ধারিত ফি)','number')+B('জমা নিন','OF()'))
++H('জমার ইতিহাস')+(S.fh.length?S.fh.map(f=>RW(SB(ES(f.n),f.t+' · '+f.d+(f.m?' · '+f.m:'')+(f.x?' · '+ES(f.x):'')),TG('৳'+bn(f.a),'ok'))).join(''):C('এখনো কোনো জমা নেই।'))};
+const a0=V.admin[0];V.admin[0]=()=>{const u=S.st.filter(s=>!s.paid),o=u.reduce((x,s)=>x+FA(s),0),n=u.reduce((x,s)=>x+DU(s),0);return a0().replace(`<b>৳${bn(o)}</b>বকেয়া`,`<b>৳${bn(n)}</b>বকেয়া`)};
+window.PRO=()=>{if(!confirm('সবাইকে পরের ক্লাসে তুলবেন? বকেয়া ও নম্বর নতুন বছরের জন্য শূন্য হবে।'))return;const k=[];S.st.forEach(s=>{const i=S.cl.indexOf(s.c);if(i<0||i==S.cl.length-1)S.arch.push(s);else{s.c=S.cl[i+1];s.paid=0;s.pt=0;k.push(s)}});S.st=k;S.mkx={};SW(S.cx);T('ক্লাস উন্নীত হয়েছে');R()};
+window.UNA=id=>{const i=S.arch.findIndex(s=>s.id==id);if(i<0)return;S.st.push(S.arch.splice(i,1)[0]);SW(S.cx);R()};
+AS['ক্লাস উন্নীত']=()=>C('<p class="mu">বছর শেষে সবাইকে পরের ক্লাসে তুলবে। শেষ ক্লাসের ছাত্ররা আর্কাইভে যাবে।</p>'+B('সবাইকে উন্নীত করুন','PRO()'))+H('আর্কাইভ ('+bn(S.arch.length)+')')+S.arch.map(s=>RW(SB(ES(s.n),'ক্লাস '+s.c),B('ফেরত আনুন',`UNA(${s.id})`,1))).join('');
+AS['মেধা তালিকা']=()=>C('পরীক্ষা: <b>'+S.cx+'</b>')+S.cl.map(c=>{const l=S.st.filter(s=>s.c==c).map(s=>({s,a:Math.round((S.mk[s.id]||[0,0,0,0]).reduce((x,y)=>x+y,0)/4)})).sort((x,y)=>y.a-x.a);return l.length?H(c)+l.map((o,i)=>RW(SB(ES(o.s.n),'রোল '+bn(i+1)),TG(bn(o.a)+' · '+G(o.a),i<3?'ok':''))).join(''):''}).join('');
+AS['রুটিন']=()=>S.cl.map((c,i)=>C(`<b>${c}</b><textarea id="rc${i}" rows="3" placeholder="ক্লাস রুটিন">${ES((S.rt[c]||{}).c)}</textarea><textarea id="re${i}" rows="3" placeholder="পরীক্ষার রুটিন">${ES((S.rt[c]||{}).e)}</textarea>`)).join('')+B('সংরক্ষণ',"S.cl.forEach((c,i)=>S.rt[c]={c:$('#rc'+i).value,e:$('#re'+i).value});T('রুটিন সংরক্ষিত হয়েছে')");
+const RTV=c=>{const r=S.rt[c]||{};return(r.c||r.e)?C('<b>ক্লাস রুটিন</b><br>'+ES(r.c||'—').replace(/\n/g,'<br>'))+C('<b>পরীক্ষার রুটিন</b><br>'+ES(r.e||'—').replace(/\n/g,'<br>')):C('এখনো দেওয়া হয়নি।')};
+GS['রুটিন']=()=>RTV(F(S.g).c);TS['রুটিন']=()=>TC().map(c=>H(c)+RTV(c)).join('')||NOC();
+window.SBS=()=>{CS().forEach(s=>{const e={d:td,s:v('sb1'+s.id),a:v('sb2'+s.id),m:v('sb3'+s.id)},h=S.sh[s.id]=S.sh[s.id]||[];S.sb[s.id]=e;S.hz[s.id]=+v('sbp'+s.id)||0;if(h[0]&&h[0].d==td)h[0]=e;else h.unshift(e);S.sh[s.id]=h.slice(0,30)});T('সবক সংরক্ষিত হয়েছে');R()};
+const sv=(id,k)=>ES((S.sb[id]||{})[k]||'');
+TS['সবক']=()=>!TC().length?NOC():CP()+CS().map(s=>C(`<b>${ES(s.n)}</b>`+I('sbp'+s.id,'পারা (০-৩০)','number',S.hz[s.id]||'')+I('sb1'+s.id,'সবক','text',sv(s.id,'s'))+I('sb2'+s.id,'সবকি','text',sv(s.id,'a'))+I('sb3'+s.id,'মানজিল','text',sv(s.id,'m')))).join('')+B('সংরক্ষণ','SBS()');
+GS['সবক']=()=>{const h=S.sh[S.g]||[],z=S.hz[S.g]||0;return C(`পারা: <b>${bn(z)}/৩০</b><div style="height:8px;border-radius:4px;background:var(--ln);margin-top:6px"><div style="height:8px;border-radius:4px;background:var(--ok);width:${z/30*100}%"></div></div>`)+(h.length?h.slice(0,7).map(x=>C(`<small class="mu">${x.d}</small><br>সবক: <b>${ES(x.s)||'—'}</b> · সবকি: <b>${ES(x.a)||'—'}</b> · মানজিল: <b>${ES(x.m)||'—'}</b>`)).join(''):C('এখনো লেখা হয়নি।'))};
+window.BHS=()=>{CS().forEach(s=>{const t=v('bh'+s.id);if(t)(S.bh[s.id]=S.bh[s.id]||[]).unshift({d:td,t})});T('সংরক্ষিত হয়েছে');R()};
+TS['আখলাক']=()=>!TC().length?NOC():CP()+CS().map(s=>C(`<b>${ES(s.n)}</b>`+I('bh'+s.id,'আজকের নোট (আখলাক/আচরণ)')+(S.bh[s.id]||[]).slice(0,2).map(b=>`<small class="mu">${b.d}: ${ES(b.t)}</small><br>`).join(''))).join('')+B('সংরক্ষণ','BHS()');
+GS['আখলাক']=()=>(S.bh[S.g]||[]).slice(0,10).map(b=>RW(ES(b.t),TG(b.d))).join('')||C('কোনো নোট নেই।');
+const MSL=id=>S.ms.filter(m=>m.st==id).slice(0,15).map(m=>C(`<small class="mu">${m.d} · ${m.by=='g'?'অভিভাবক':'শিক্ষক'}</small><br>${ES(m.x)}`)).join('')||C('কোনো বার্তা নেই।');
+GS['বার্তা']=()=>`<textarea id="mg" rows="3" placeholder="শিক্ষককে বার্তা লিখুন"></textarea>`+B('পাঠান',"add([v('mg')],()=>S.ms.unshift({st:S.g,by:'g',x:v('mg'),d:'"+td+"'}))")+H('আলাপ')+MSL(S.g);
+window.RPL=id=>{const x=v('rp'+id);if(!x)return T('লিখুন');S.ms.unshift({st:id,by:'t',x,d:td});R()};
+TS['বার্তা']=()=>!TC().length?NOC():CP()+CS().map(s=>C(`<b>${ES(s.n)}</b>`+MSL(s.id)+I('rp'+s.id,'উত্তর লিখুন')+B('পাঠান',`RPL(${s.id})`,1))).join('');
+window.LA=(i,s)=>{S.lv[i].s=s;R()};
+AS['ছুটি ও মতামত']=()=>H('ছুটির আবেদন')+(S.lv.length?S.lv.map((l,i)=>C(`<b>${ES(l.n)}</b> · ${l.t}<br>${ES(l.x)}<div class="bs" style="justify-content:flex-start;margin-top:8px">${TG(l.s||'অপেক্ষমাণ',l.s=='অনুমোদিত'?'ok':l.s=='বাতিল'?'bad':'')}${B('অনুমোদন',`LA(${i},'অনুমোদিত')`,1)}${B('বাতিল',`LA(${i},'বাতিল')`,1)}</div>`)).join(''):C('কোনো আবেদন নেই।'))+H('অভিভাবকের মতামত')+(S.fb.length?S.fb.map(f=>C(SB(ES(f.n),ES(f.x)))).join(''):C('কোনো মতামত নেই।'));
+GS['ছুটির আবেদন']=()=>SEL('lt',['ছুটি','অসুস্থতা'])+`<textarea id="lx" rows="3" placeholder="কারণ লিখুন"></textarea>`+B('আবেদন পাঠান',"add([v('lx')],()=>S.lv.unshift({n:F(S.g).n,t:$('#lt').value,x:v('lx')}))")+H('আমার আবেদন')+(S.lv.filter(l=>l.n==F(S.g).n).map(l=>RW(ES(l.x),TG(l.s||'অপেক্ষমাণ',l.s=='অনুমোদিত'?'ok':l.s=='বাতিল'?'bad':''))).join('')||C('কোনো আবেদন নেই।'));
+AS['সবাইকে বার্তা']=()=>`<textarea id="bm" rows="3" placeholder="সব অভিভাবককে পাঠানোর বার্তা"></textarea>`+B('তালিকা তৈরি করুন',"S.bmx=v('bm');R()")+(S.bmx?C(ES(S.bmx))+H('প্রতিটি অভিভাবক (WhatsApp)')+[...new Map(S.st.map(s=>[en(s.ph),s])).values()].map(s=>RW(SB(ES(s.pn),ES(s.n)),WA(s.ph,S.bmx))).join(''):'');
+const TKY=t=>t.m||t.n;window.TAT=i=>{const k=TKY(S.tc[i]);S.ta[td]=S.ta[td]||{};S.ta[td][k]=S.ta[td][k]===true?false:true;R()};
+AS['শিক্ষক উপস্থিতি']=()=>H('আজ')+S.tc.map((t,i)=>{const a=(S.ta[td]||{})[TKY(t)];return RW(`<b>${ES(t.n)}</b>`,B(a===false?'অনুপস্থিত':a?'উপস্থিত':'চিহ্নিত করুন',`TAT(${i})`,a!==true))}).join('')+H('এই মাসে')+S.tc.map(t=>{let p=0,a=0;Object.keys(S.ta).filter(d=>d.startsWith(mo)).forEach(d=>{const r=S.ta[d][TKY(t)];if(r===true)p++;if(r===false)a++});return RW(ES(t.n),TG(`উপস্থিত ${bn(p)} · অনুপস্থিত ${bn(a)}`))}).join('');
+const mr=AS['মাসিক রিপোর্ট'];AS['মাসিক রিপোর্ট']=()=>{const y={};S.ac.forEach(x=>{const k=(x.d||td).slice(0,4);y[k]=y[k]||[0,0];y[k][x.k?0:1]+=x.a});return H('বছরভিত্তিক')+Object.keys(y).sort().reverse().map(k=>C(`<b>${bn(k)}</b><br>আয় ৳${bn(y[k][0])} · ব্যয় ৳${bn(y[k][1])}<br><b>উদ্বৃত্ত ৳${bn(y[k][0]-y[k][1])}</b>`)).join('')+H('মাসভিত্তিক')+mr()};
+const R4=R;R=function(){R4();
+if(S.au&&S.au.r=='guardian'&&F(S.g)){const ph=en(F(S.g).ph),sb=S.st.filter(x=>en(x.ph)==ph);if(sb.length>1)$('.sec').insertAdjacentHTML('afterbegin',`<div class="bs" style="justify-content:flex-start;margin-bottom:10px">${sb.map(x=>B(ES(x.n),`S.g=${x.id};R()`,x.id!=S.g)).join('')}</div>`)}
+const h=$('.hd');h&&h.insertAdjacentHTML('beforeend',`<button class="b g" onclick="TH()" style="${S.au?'':'margin-left:auto;'}flex:none;padding:6px 10px;font-size:13px;color:#EBDDC3;border-color:var(--ac)">◐</button>`)};
+R();
+})();
+</script>
+<script>
+function dlFile(name,text){const b=new Blob(['\uFEFF'+text],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
+const csvCell=x=>'"'+String(x==null?'':x).replace(/"/g,'""')+'"';
+function dlCSV(){const h=['ভর্তি নং','নাম','ক্লাস','অভিভাবক','মোবাইল','ফি'];const rows=S.st.map(s=>[s.id,s.n,s.c,s.pn,s.ph,s.paid?'জমা':'বকেয়া'].map(csvCell).join(','));dlFile('ছাত্র-তালিকা.csv',[h.map(csvCell).join(',')].concat(rows).join('\r\n'));T('ফাইল ডাউনলোড হচ্ছে')}
+function dlJSON(){dlFile('madrasa-backup-'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify(Object.fromEntries(BKK.map(k=>[k,S[k]]))))}
+</script>
+<script>
+const escA=x=>String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+AS['নম্বর সংশোধন']=()=>{
+ const ex=S.ex.map(x=>B(x,`SW('${x}');R()`,x!=S.cx)).join('');
+ return `<div class="bs" style="justify-content:flex-start;margin-bottom:10px">${ex}</div>`+C(`<b>পরীক্ষা: ${escA(S.cx)}</b><br>যেকোনো ছাত্রের নম্বর ভুল হলে এখানে ঠিক করুন।`)+S.st.map(s=>RW(`<b>${escA(s.n)}</b>`,`<div class="mk">${K.map((k,j)=>`<input id="am${s.id}_${j}" type="number" placeholder="${k}" value="${((S.mk[s.id])||[0,0,0,0])[j]}">`).join('')}</div><input id="ac${s.id}" placeholder="মন্তব্য" value="${escA(S.cm[s.id]||'')}">`)).join('')+B('সব নম্বর সংরক্ষণ','saveAdminMarks()');
+};
+function saveAdminMarks(){S.st.forEach(s=>{S.mk[s.id]=K.map((k,j)=>+$('#am'+s.id+'_'+j).value||0);S.cm[s.id]=$('#ac'+s.id).value});T('নম্বর সংরক্ষিত হয়েছে');R()}
+</script>
+<script>
+let ADD=null;
+const escA2=x=>String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+const tdKey=()=>{const n=new Date(),p=x=>String(x).padStart(2,'0');return n.getFullYear()+'-'+p(n.getMonth()+1)+'-'+p(n.getDate())};
+window.ADT=id=>{const d=ADD||tdKey();S.att[d]=S.att[d]||{};const a=S.att[d][id];const nv=a===true?false:true;S.att[d][id]=nv;if(d===tdKey()){const st=S.st.find(x=>x.id==id);if(st)st.here=nv}R()};
+window.ADTT=i=>{const t=S.tc[i];const d=ADD||tdKey();S.ta[d]=S.ta[d]||{};const k=t.m||t.n;const a=S.ta[d][k];S.ta[d][k]=a===true?false:true;R()};
+AS['উপস্থিতি সংশোধন']=()=>{
+ const d=ADD||tdKey();const st=S.att[d]||{};const tt=S.ta[d]||{};
+ const lab=a=>a===true?'উপস্থিত':a===false?'অনুপস্থিত':'চিহ্নিত নয়';
+ return C(`<b>তারিখ বেছে নিন</b><br><input type="date" value="${d}" onchange="ADD=this.value;R()" style="margin-top:6px">`)
+ +H('ছাত্রদের উপস্থিতি')
+ +S.st.map(s=>RW(`<b>${escA2(s.n)}</b> <small class="mu">${escA2(s.c)}</small>`,B(lab(st[s.id]),`ADT(${s.id})`,st[s.id]!==true))).join('')
+ +H('শিক্ষকদের উপস্থিতি')
+ +S.tc.map((t,i)=>RW(`<b>${escA2(t.n)}</b>`,B(lab(tt[t.m||t.n]),`ADTT(${i})`,tt[t.m||t.n]!==true))).join('');
+};
+const BKK=['st','cl','tc','ft','fh','ac','nt','ev','hw','info','mk','cm','cf','pr','lv','fb','ap','dy','pt','dh','pub','att','pw','mo','dy0','ms','bh','hz','sh','rt','ta','mkx','ex','sb','arch','cx'];
+window.restoreAll=()=>{try{const d=JSON.parse($('#rs').value);BKK.forEach(k=>{if(d[k]!==undefined)S[k]=d[k]});T('রিস্টোর হয়েছে');R()}catch(e){T('ব্যাকআপ ঠিক নেই')}};
+AS['ব্যাকআপ']=()=>C('নিয়মিত ব্যাকআপ নিন এবং ফাইলটি নিরাপদ জায়গায় রাখুন।')+H('ফাইল ডাউনলোড')+B('ছাত্র তালিকা (Excel/CSV)','dlCSV()')+B('ব্যাকআপ ফাইল (JSON)','dlJSON()',1)+H('সম্পূর্ণ ব্যাকআপ (JSON)')+`<textarea id="bj" rows="4" readonly>${escA2(JSON.stringify(Object.fromEntries(BKK.map(k=>[k,S[k]]))))}</textarea>`+B('কপি করুন',"navigator.clipboard.writeText($('#bj').value).then(()=>T('কপি হয়েছে'),()=>T('ঘরটি চেপে ধরে কপি করুন'))")+H('রিস্টোর')+`<textarea id="rs" rows="3" placeholder="ব্যাকআপ এখানে পেস্ট করুন"></textarea>`+B('রিস্টোর করুন','restoreAll()');
+</script>
+<script>
+const CKEY='mmcontact';
+const contactCfg=()=>{try{return JSON.parse(localStorage.getItem(CKEY)||'{}')}catch(e){return{}}};
+const enDig=x=>String(x==null?'':x).replace(/[০-৯]/g,d=>'০১২৩৪৫৬৭৮৯'.indexOf(d));
+const waNum=x=>{const n=enDig(x).replace(/\D/g,'');return n.startsWith('0')?'880'+n.slice(1):n};
+const telNum=x=>enDig(x).replace(/[^0-9+]/g,'');
+const contactCard=()=>{
+ const c=contactCfg();const it=[];
+ if(c.phone){it.push(['কল করুন','tel:'+telNum(c.phone)]);it.push(['হোয়াটসঅ্যাপ','https://wa.me/'+waNum(c.phone)])}
+ if(c.email)it.push(['ইমেইল','mailto:'+c.email]);
+ if(c.fb)it.push(['ফেসবুক পেজ',c.fb]);
+ if(!it.length)return '';
+ return H('যোগাযোগ')+C(it.map(([t,h])=>`<a class="b" href="${escA(h)}" target="_blank" rel="noopener" style="display:inline-block;margin:4px 6px 4px 0;text-decoration:none">${t}</a>`).join(''));
+};
+window.saveContact=()=>{
+ const fb=$('#cfb').value.trim();
+ const o={phone:$('#cph').value.trim(),email:$('#cem').value.trim(),fb:fb.startsWith('https://')?fb:''};
+ if(fb&&!o.fb){T('ফেসবুক লিংক https:// দিয়ে শুরু হতে হবে');return}
+ try{localStorage.setItem(CKEY,JSON.stringify(o))}catch(e){}
+ T('যোগাযোগের তথ্য সংরক্ষিত হয়েছে');R();
+};
+AS['যোগাযোগ']=()=>{
+ const c=contactCfg();
+ return C('এখানে যা লিখবেন, তা অভিভাবকের হোম পাতায় কল, হোয়াটসঅ্যাপ, ইমেইল ও ফেসবুক বাটন হিসেবে দেখাবে।')
+ +`<input id="cph" placeholder="মাদরাসার ফোন নম্বর" value="${escA(c.phone||'')}">`
+ +`<input id="cem" type="email" placeholder="ইমেইল" value="${escA(c.email||'')}">`
+ +`<input id="cfb" placeholder="ফেসবুক পেজের লিংক (https://...)" value="${escA(c.fb||'')}">`
+ +B('সংরক্ষণ','saveContact()');
+};
+const gHome=V.guardian[0];
+V.guardian[0]=()=>gHome()+contactCard();
+</script>
+<script>
+const stContactRows=list=>list.filter(s=>s.ph).map(s=>RW(`<b>${escA(s.n)}</b> <small class="mu">${escA(s.pn)}</small>`,`<a class="b" href="tel:${telNum(s.ph)}" style="text-decoration:none">কল</a> <a class="b g" href="https://wa.me/${waNum(s.ph)}" target="_blank" rel="noopener" style="text-decoration:none">হোয়াটসঅ্যাপ</a>`)).join('')||C('কোনো ফোন নম্বর নেই।');
+const admStud=V.admin[1];
+V.admin[1]=()=>admStud()+H('অভিভাবকের সাথে যোগাযোগ')+stContactRows(S.st);
+const tchHome=V.teacher[0];
+V.teacher[0]=()=>tchHome()+H('আমার ক্লাসের অভিভাবক')+stContactRows(S.st.filter(s=>s.c==S.tcl));
+</script>
+</body></html>
