@@ -184,8 +184,8 @@ if(r=='admin'&&S.pw.admin=='1234')T('পাসওয়ার্ড বদলে
 window.LO=()=>{S.au=null;S.g=0;S.lr='guardian';LS('mmau',null);R()};
 const R2=R;
 R=function(){
-if(!S.au){S.role='guardian';S.g=0;R2();const r=S.lr||'guardian',f={admin:['','অ্যাডমিন পাসওয়ার্ড'],teacher:['মোবাইল নম্বর','পাসওয়ার্ড'],guardian:['ভর্তি নম্বর','অভিভাবকের মোবাইল নম্বর']}[r];
-$('.sec').innerHTML=C(H('লগইন')+`<div class="bs" style="justify-content:flex-start;margin-bottom:10px">${(r=='admin'?['admin','teacher','guardian']:['teacher','guardian']).map(k=>B(RN[k],`LR('${k}')`,k!=r)).join('')}</div>`+(r=='admin'?I('l1',f[1],'password'):I('l1',f[0])+I('l2',f[1],r=='teacher'?'password':'text'))+B('প্রবেশ করুন','LGN()'))+AD();
+if(!S.au){S.role='guardian';S.g=0;R2();const r=S.lr||'guardian',f={admin:['অ্যাডমিন ইমেইল','পাসওয়ার্ড'],teacher:['মোবাইল নম্বর','পাসওয়ার্ড'],guardian:['ভর্তি নম্বর','অভিভাবকের মোবাইল নম্বর']}[r];
+$('.sec').innerHTML=C(H('লগইন')+`<div class="bs" style="justify-content:flex-start;margin-bottom:10px">${(r=='admin'?['admin','teacher','guardian']:['teacher','guardian']).map(k=>B(RN[k],`LR('${k}')`,k!=r)).join('')}</div>`+I('l1',f[0])+I('l2',f[1],r=='guardian'?'text':'password')+B('প্রবেশ করুন','LGN()'))+AD();
 const sg=$('.seg');sg&&sg.remove();const lg=$('.lg');if(lg)lg.onclick=()=>{S.lt=(S.lt||0)+1;clearTimeout(S.lh);S.lh=setTimeout(()=>S.lt=0,2500);if(S.lt>=5){S.lt=0;S.lr='admin';R()}};return}
 S.role=S.au.r;R2();const sg=$('.seg');sg&&sg.remove();
 const h=$('.hd');h&&h.insertAdjacentHTML('beforeend','<button class="b g" onclick="LO()" style="margin-left:auto;flex:none;white-space:nowrap;padding:6px 10px;font-size:13px;color:#EBDDC3;border-color:var(--ac)">বের হন</button>');SV()};
@@ -234,25 +234,60 @@ window.SBS=()=>{CS().forEach(s=>{S.sb[s.id]={d:td,s:v('sb1'+s.id),a:v('sb2'+s.id
 const sbv=(id,k)=>ES((S.sb[id]||{})[k]||'');
 TS['সবক']=()=>!TC().length?NOC():CP()+CS().map(s=>C(`<b>${ES(s.n)}</b>`+I('sb1'+s.id,'সবক','text',sbv(s.id,'s'))+I('sb2'+s.id,'সবকি','text',sbv(s.id,'a'))+I('sb3'+s.id,'মানজিল','text',sbv(s.id,'m')))).join('')+B('সংরক্ষণ','SBS()');
 GS['সবক']=()=>{const x=S.sb[S.g];return x?C(`<small class="mu">${x.d}</small><br>সবক: <b>${ES(x.s)||'—'}</b><br>সবকি: <b>${ES(x.a)||'—'}</b><br>মানজিল: <b>${ES(x.m)||'—'}</b>`):C('এখনো লেখা হয়নি।')};
-const KA=['st','cl','tc','ft','fh','ac','nt','ev','hw','info','cm','cf','pr','lv','fb','ap','dy','pt','dh','pub','att','pw','mo','mkx','ex','sb','pc','arch','rt','hz','sh','bh','ms','ta'];
+const KA=['st','cl','tc','ft','fh','ac','nt','ev','hw','info','cm','cf','pr','lv','fb','ap','dy','pt','dh','pub','att','mo','mkx','ex','sb','pc','arch','rt','hz','sh','bh','ms','ta'];
 const ME=Math.random().toString(36).slice(2),TK=t=>t.m||t.n;
-const snap=()=>{const o=Object.fromEntries(KA.map(k=>[k,S[k]]));o.tc=[...S.tc].sort((a,b)=>TK(a).localeCompare(TK(b)));return JSON.stringify(o)};
+const snap=()=>{const o=Object.fromEntries(KA.map(k=>[k,S[k]]));o.tc=[...S.tc].map(t=>{const c={...t};delete c.p;return c}).sort((a,b)=>TK(a).localeCompare(TK(b)));return JSON.stringify(o)};
 const RF=()=>{try{if(S.au&&S.au.r=='teacher'){const a=JSON.parse(L('mmau')),i=S.tc.findIndex(t=>t.m==a.m);if(i>0)S.tc.unshift(S.tc.splice(i,1)[0])}}catch(e){}};
 const ld=s=>{const d=JSON.parse(s);KA.forEach(k=>{if(d[k]!==undefined)S[k]=d[k]});SW(S.cx);RF()};
-let db=null,last='';
+let db=null,last='',got=false,unsub=null,iv=null,syncUid=null,FBP=null,fa=null,fs=null,AU=null;const waiters=[];
+const FBC={apiKey:"AIzaSyAjV6_ua5k_dxtJMhZiQv77tq_bCssaJEU",authDomain:"madrasa-19459.firebaseapp.com",projectId:"madrasa-19459",storageBucket:"madrasa-19459.firebasestorage.app",messagingSenderId:"918697931932",appId:"1:918697931932:web:b021fb2d20dce564b1e959"};
+const ADM='UdJGNuGjOiht5IXQpa6N6UR2S7I3';
 const js=u=>new Promise((ok,no)=>{const e=document.createElement('script');e.src=u;e.onload=ok;e.onerror=no;document.head.appendChild(e)});
-const FBS=()=>{const c=L('mmfb');if(!c||db)return;const B0='https://www.gstatic.com/firebasejs/10.12.2/firebase-';
-js(B0+'app-compat.js').then(()=>js(B0+'auth-compat.js')).then(()=>js(B0+'firestore-compat.js')).then(()=>{firebase.initializeApp(JSON.parse(c));return firebase.auth().signInAnonymously()}).then(()=>{db=firebase.firestore().doc('madrasa/main');S.fbst='সংযুক্ত ✓';
-db.onSnapshot(s=>{if(!s.exists)return;const d=s.data();if(d.by===ME||d.data===last)return;last=d.data;try{ld(d.data);R()}catch(e){}});
-setInterval(()=>{const x=snap();if(x!==last){last=x;db.set({data:x,by:ME,t:Date.now()}).catch(e=>{S.fbst='লেখা যায়নি: '+e.message})}},3000)}).catch(e=>{S.fbst='সংযোগ হয়নি: '+(e.message||e)})};
-window.FBON=()=>{try{JSON.parse(v('fbc'));L('mmfb',v('fbc'));S.fbst='সংযোগ হচ্ছে…';FBS();T('চালু হচ্ছে')}catch(e){T('কনফিগ ঠিক নেই (JSON হতে হবে)')}};
-window.FBOFF=()=>{try{localStorage.removeItem('mmfb')}catch(e){}T('বন্ধ হয়েছে, অ্যাপ আবার খুলুন')};
-AS['ক্লাউড সিঙ্ক']=()=>C('<p class="mu">Firebase কনসোল → Project settings → Web app-এর firebaseConfig এখানে JSON আকারে পেস্ট করুন। সব ডিভাইসে একই ডেটা দেখাবে।</p>'+`<textarea id="fbc" rows="6" placeholder='{"apiKey":"...","projectId":"..."}'>${ES(L('mmfb')||'')}</textarea>`+B('চালু করুন','FBON()')+' '+B('বন্ধ করুন','FBOFF()',1))+C(ES(S.fbst||'বন্ধ আছে'));
+const TEM=(m,ver)=>'t'+en(m)+(ver?'x'+ver:'')+'@teachers.madrasa-app.example';
+const ERR=e=>{const c=(e&&e.code)||'';if(/invalid-credential|wrong-password|user-not-found|invalid-email/.test(c))return 'ইমেইল/মোবাইল বা পাসওয়ার্ড ভুল';if(/email-already-in-use/.test(c))return 'এই নম্বরে অ্যাকাউন্ট আগেই আছে';if(/network/.test(c))return 'ইন্টারনেট সংযোগ নেই';if(/too-many/.test(c))return 'অনেকবার চেষ্টা হয়েছে, একটু পরে আবার করুন';if(/permission/.test(c))return 'অনুমতি নেই';if(/weak-password/.test(c))return 'পাসওয়ার্ড কমপক্ষে ৬ অক্ষর';return 'সমস্যা: '+((e&&e.message)||e)};
+const isAdm=()=>!!(AU&&!AU.isAnonymous&&AU.uid===ADM);
+const wake=()=>{while(waiters.length)waiters.shift()()};
+const stopSync=()=>{if(unsub){try{unsub()}catch(e){}unsub=null}syncUid=null;got=false;db=null};
+const startSync=u=>{if(!u||u.isAnonymous||!fs||syncUid===u.uid)return;stopSync();syncUid=u.uid;last='';db=fs.doc('madrasa/main');S.fbst='সংযোগ হচ্ছে…';
+unsub=db.onSnapshot(s=>{got=true;S.fbst='সংযুক্ত ✓';wake();if(!s.exists)return;const d=s.data();if(d.by===ME||d.data===last)return;last=d.data;try{ld(d.data);R()}catch(e){}},e=>{S.fbst='সিঙ্ক বন্ধ: '+ERR(e);wake();if(e&&/permission/.test(e.code||'')&&S.au&&S.au.r=='teacher'){T('আপনার অ্যাকাউন্ট বন্ধ আছে');window.LO()}})};
+if(!iv)iv=setInterval(()=>{if(!db||!got||!AU||AU.isAnonymous)return;const x=snap();if(x!==last){last=x;db.set({data:x,by:ME,t:Date.now()}).catch(e=>{S.fbst='লেখা যায়নি: '+ERR(e)})}},3000);
+const FBI=()=>{if(FBP)return FBP;const B0='https://www.gstatic.com/firebasejs/10.12.2/firebase-';
+FBP=js(B0+'app-compat.js').then(()=>js(B0+'auth-compat.js')).then(()=>js(B0+'firestore-compat.js')).then(()=>{firebase.initializeApp(FBC);fa=firebase.auth();fs=firebase.firestore();S.fbst='প্রস্তুত';
+fa.onAuthStateChanged(u=>{AU=u;if(u&&!u.isAnonymous)startSync(u);else{stopSync();if(!u&&S.au&&S.au.r!='guardian'){S.au=null;L('mmau','null');R()}}})}).catch(e=>{S.fbst='সংযোগ হয়নি';FBP=null});return FBP};
+const waitSnap=()=>new Promise(res=>{if(got)return res();waiters.push(res);setTimeout(res,8000)});
+const finish=r=>{S.role=r;S.tab[r]=0;S.sub=null;S.au={r};L('mmau',JSON.stringify({r,g:0,m:r=='teacher'?S.tc[0].m:''}));R()};
+const LGN0=window.LGN;
+window.LGN=async()=>{const r=S.lr||'guardian';if(r=='guardian')return LGN0();
+const a=v('l1').trim(),b=v('l2');if(!a||!b)return T('সব ঘর পূরণ করুন');
+await FBI();if(!fa)return T('ইন্টারনেট সংযোগ দরকার');T('লগইন হচ্ছে…');
+try{
+if(r=='admin'){const c=await fa.signInWithEmailAndPassword(a,b);if(c.user.uid!==ADM){await fa.signOut();return T('এটা অ্যাডমিন অ্যাকাউন্ট না')}startSync(c.user);await waitSnap();if(!got){await fa.signOut();return T('ডেটা লোড হয়নি, আবার চেষ্টা করুন')}finish('admin')}
+else{const d=en(a);if(d.length<10)return T('মোবাইল নম্বর ঠিক নেই');if(!fa.currentUser)await fa.signInAnonymously();let ver=0;try{const t=await fs.doc('tv/'+d).get();if(t.exists)ver=t.data().v||0}catch(e){}
+const c=await fa.signInWithEmailAndPassword(TEM(d,ver),b);startSync(c.user);await waitSnap();if(!got){await fa.signOut();return T('অ্যাকাউন্ট বন্ধ আছে বা সংযোগ হয়নি')}const i=S.tc.findIndex(t=>en(t.m||'')==d);
+if(i<0||!S.tc[i].on){await fa.signOut();return T(i<0?'শিক্ষকের তালিকায় নেই':'অ্যাকাউন্ট বন্ধ আছে')}
+S.tc.unshift(S.tc.splice(i,1)[0]);finish('teacher')}
+}catch(e){T(ERR(e))}};
+const LO0=window.LO;window.LO=()=>{try{if(fa)fa.signOut()}catch(e){}stopSync();LO0()};
+const mkTeacher=async(d,p,ver)=>{const sec=firebase.apps.find(x=>x.name=='sec')||firebase.initializeApp(FBC,'sec');const sa=sec.auth();const c=await sa.createUserWithEmailAndPassword(TEM(d,ver),p);const uid=c.user.uid;await sa.signOut();await fs.doc('roles/'+uid).set({role:'teacher',m:d});await fs.doc('tv/'+d).set({v:ver});return uid};
+window.ATC=async()=>{const n=v('tn'),m=v('tm'),p=v('tp'),sal=+v('ts'),c=$('#tk').value,d=en(m);
+if(!n||!m||!p||!sal)return T('সব ঘর পূরণ করুন');if(p.length<6)return T('পাসওয়ার্ড কমপক্ষে ৬ অক্ষর');if(d.length<10)return T('মোবাইল নম্বর ঠিক নেই');
+if(S.tc.some(t=>en(t.m||'')==d))return T('এই নম্বরে শিক্ষক আছেন');if(!isAdm())return T('অ্যাডমিন হিসেবে লগইন করুন');
+T('অ্যাকাউন্ট তৈরি হচ্ছে…');try{const uid=await mkTeacher(d,p,0);S.tc.push({n,m,c,sal,paid:0,on:true,uid,ev:0});T('শিক্ষক যোগ হয়েছে');R()}catch(e){T(ERR(e))}};
+window.TT2=async i=>{const t=S.tc[i];if(!t.uid){t.on=!t.on;T(t.on?'শিক্ষক চালু':'শিক্ষক বন্ধ');R();return}
+if(!isAdm())return T('অ্যাডমিন হিসেবে লগইন করুন');try{if(t.on){await fs.doc('roles/'+t.uid).delete();t.on=false;T('শিক্ষক বন্ধ')}else{await fs.doc('roles/'+t.uid).set({role:'teacher',m:en(t.m)});t.on=true;T('শিক্ষক চালু')}R()}catch(e){T(ERR(e))}};
+window.TPW=async i=>{const t=S.tc[i],p=v('tp'+i);if(p.length<6)return T('কমপক্ষে ৬ অক্ষর');if(!isAdm())return T('অ্যাডমিন হিসেবে লগইন করুন');if(en(t.m||'').length<10)return T('শিক্ষকের মোবাইল নম্বর ঠিক নেই');
+try{const old=t.uid,ver=old?(t.ev||0)+1:0,was=t.on!==false;const uid=await mkTeacher(en(t.m),p,ver);if(old)await fs.doc('roles/'+old).delete().catch(()=>{});if(!was)await fs.doc('roles/'+uid).delete().catch(()=>{});t.uid=uid;t.ev=ver;T(old?'পাসওয়ার্ড বদলেছে':'অ্যাকাউন্ট খোলা হয়েছে');R()}catch(e){T(ERR(e))}};
+window.APW=async()=>{const p0=v('p0'),p1=v('p1');if(!isAdm())return T('অ্যাডমিন হিসেবে লগইন করুন');if(!p0||p1.length<6)return T('নতুন পাসওয়ার্ড কমপক্ষে ৬ অক্ষর');
+try{await AU.reauthenticateWithCredential(firebase.auth.EmailAuthProvider.credential(AU.email,p0));await AU.updatePassword(p1);T('পাসওয়ার্ড বদলেছে')}catch(e){T(ERR(e))}};
+AS['শিক্ষক']=()=>S.tc.map((t,i)=>RW(SB(ES(t.n),`বেতন ৳${bn(t.sal)} · ক্লাস ${ES(t.c||'—')}<br>মোবাইল ${ES(t.m||'—')}`+(t.uid?'':' · অ্যাকাউন্ট নেই')),B(t.on?'বন্ধ করুন':'চালু করুন',`TT2(${i})`,t.on))).join('')+H('নতুন শিক্ষক')+I('tn','শিক্ষকের নাম')+I('tm','মোবাইল নম্বর (লগইন আইডি)')+I('tp','শুরুর পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)','password')+I('ts','মাসিক বেতন','number')+SEL('tk',S.cl)+B('শিক্ষক যোগ করুন','ATC()');
+AS['পাসওয়ার্ড']=()=>C('<p class="mu">অ্যাডমিন ইমেইল: '+ES((AU&&AU.email)||'—')+'</p>'+I('p0','বর্তমান পাসওয়ার্ড','password')+I('p1','নতুন পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)','password')+B('বদলান','APW()'))+H('শিক্ষকের পাসওয়ার্ড')+S.tc.map((t,i)=>RW(SB(ES(t.n),ES(t.m||'')+(t.uid?'':' · অ্যাকাউন্ট নেই')),`<div class="bs"><input id="tp${i}" type="password" placeholder="নতুন পাসওয়ার্ড" style="width:130px;margin:0">${B(t.uid?'বদলান':'অ্যাকাউন্ট খুলুন',`TPW(${i})`,1)}</div>`)).join('');
+AS['ক্লাউড সিঙ্ক']=()=>C(ES(S.fbst||'বন্ধ আছে'))+C('<p class="mu">ডেটা লগইন করা অ্যাডমিন ও শিক্ষকদের মধ্যে নিরাপদে সিঙ্ক হয়। অন্য কেউ দেখতে পারে না।</p>');
+
 const ST=()=>{S.ac.forEach(x=>{if(!x.d)x.d=td});S.fh.forEach(f=>{if(!f.dt)f.dt=td})};
 const SV2=()=>L('mmv2',JSON.stringify(Object.fromEntries(K2.map(k=>[k,S[k]]))));
 const R3=R;R=function(){ST();R3();SV2()};
 setInterval(SV2,3000);addEventListener('pagehide',SV2);
-R();FBS();if(S.au&&S.pc.d!==td){S.pc.d=td;PA(true)}
+R();FBI();if(S.au&&S.pc.d!==td){S.pc.d=td;PA(true)}
 })();
 </script>
 <script>
