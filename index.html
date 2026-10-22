@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="bn"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#150d0a">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 <title>Madrasatul Madinah | মাদরাসাতুল মাদিনাহ</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@600&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -410,4 +414,5 @@ V.admin[1]=()=>admStud()+H('অভিভাবকের সাথে যোগ�
 const tchHome=V.teacher[0];
 V.teacher[0]=()=>tchHome()+H('আমার ক্লাসের অভিভাবক')+stContactRows(S.st.filter(s=>s.c==S.tcl));
 </script>
+<script>if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}</script>
 </body></html>
